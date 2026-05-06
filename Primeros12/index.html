@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Guía PandA">
+<meta name="theme-color" content="#2D1B0E" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1208" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<title>Así le hicimos — Guía PandA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root {
+  --cream:#FFF8F0; --warm-white:#FFFDF9; --sand:#F5E6D0; --peach:#F2C4A0;
+  --terra:#D4845A; --deep-terra:#A85F3A; --sage:#8BAF8C; --deep-sage:#5A7D5C;
+  --sky:#A8C8D8; --deep-sky:#5A8FA8; --lavender:#C4B0D8;
+  --dark:#2D1B0E; --mid:#5C3D2A; --light:#8C6550;
+  --shadow:rgba(45,27,14,0.12); --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+body{
+  font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--cream);color:var(--dark);
+  -webkit-tap-highlight-color:rgba(212,132,90,0.2);
+  touch-action:manipulation;
+}
+/* ── HERO ── */
+.hero{background:linear-gradient(145deg,#2D1B0E 0%,#5C3D2A 50%,#8BAF8C 100%);padding:40px 20px 48px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(242,196,160,.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 20%,rgba(139,175,140,.2) 0%,transparent 50%);pointer-events:none}
+.hero img{width:110px;height:110px;object-fit:contain;display:block;margin:0 auto 12px;filter:drop-shadow(0 2px 10px rgba(45,27,14,.35));position:relative}
+.hero-badge{display:inline-block;background:rgba(255,248,240,.15);border:1px solid rgba(255,248,240,.3);color:var(--cream);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;position:relative}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,6vw,38px);color:var(--cream);line-height:1.2;position:relative}
+.hero h1 em{color:var(--peach);font-style:italic}
+.hero p{color:rgba(255,248,240,.72);font-size:13px;margin-top:10px;position:relative;font-weight:300;line-height:1.5;max-width:300px;margin-left:auto;margin-right:auto}
+.hero-edit-btn{margin-top:14px;background:rgba(255,248,240,.15);border:1px solid rgba(255,248,240,.35);color:rgba(255,248,240,.85);font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;padding:7px 16px;border-radius:20px;cursor:pointer;position:relative;-webkit-tap-highlight-color:rgba(255,255,255,.2)}
+/* ── NAV ── */
+.nav-wrap{background:var(--warm-white);border-bottom:2px solid var(--sand);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-tabs{display:flex;gap:0;min-width:max-content;padding:0 12px}
+.tab-btn{background:none;border:none;padding:13px 16px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--light);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:5px;-webkit-tap-highlight-color:rgba(212,132,90,.2);touch-action:manipulation}
+.tab-btn.active{color:var(--deep-terra);border-bottom-color:var(--terra)}
+.tab-dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5;flex-shrink:0}
+.tab-btn.active .tab-dot{opacity:1}
+/* ── MAIN ── */
+.main{max-width:680px;margin:0 auto;padding:24px 14px 60px}
+.stage{display:none}
+.stage.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* ── STAGE HEADER ── */
+.stage-hdr{border-radius:18px;padding:24px 20px;margin-bottom:20px;color:white;position:relative;overflow:hidden}
+.stage-hdr::after{content:attr(data-emoji);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:56px;opacity:.2;pointer-events:none}
+.stage-lbl{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;opacity:.7;font-weight:700;margin-bottom:6px}
+.stage-hdr h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,5vw,28px);line-height:1.2;margin-bottom:6px}
+.stage-hdr p{font-size:13px;opacity:.82;line-height:1.5;max-width:80%}
+/* ── CARD ── */
+.card{background:var(--warm-white);border-radius:14px;padding:18px 16px;margin-bottom:14px;border:1.5px solid var(--sand);box-shadow:0 2px 10px var(--shadow)}
+.card-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.card h3{font-family:'Playfair Display',Georgia,serif;font-size:16px;color:var(--dark)}
+.card h3 span{font-size:12px;font-family:'Nunito',sans-serif;color:var(--light);font-weight:400;display:block}
+/* ── LISTS ── */
+.ilist{list-style:none}
+.ilist li{padding:8px 0;border-bottom:1px dashed var(--sand);font-size:13px;line-height:1.5;color:var(--mid);display:flex;gap:9px;align-items:flex-start}
+.ilist li:last-child{border-bottom:none}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--terra);margin-top:5px;flex-shrink:0}
+.dot.g{background:var(--sage)}.dot.b{background:var(--sky)}.dot.r{background:#D45A5A}.dot.p{background:var(--lavender)}
+/* ── TIP / WARN BOXES ── */
+.tip-box{background:rgba(139,175,140,.1);border-left:4px solid var(--sage);border-radius:0 10px 10px 0;padding:12px 14px;margin:10px 0;font-size:13px;color:var(--mid);line-height:1.6}
+.tip-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep-sage);margin-bottom:4px}
+.warn-box{background:rgba(220,80,60,.06);border-left:4px solid #D45A5A;border-radius:0 10px 10px 0;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.warn-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#A83030;margin-bottom:4px}
+/* ── SCHEDULE ── */
+.sched{display:flex;flex-direction:column;gap:7px}
+.sched-row{display:flex;gap:9px;align-items:flex-start}
+.sched-time{min-width:68px;font-size:11px;font-weight:800;color:var(--terra);padding-top:2px}
+.sched-act{flex:1;background:var(--sand);border-radius:7px;padding:7px 11px;font-size:12px;color:var(--mid);line-height:1.4}
+.sched-act strong{display:block;font-size:12px;color:var(--dark)}
+/* ── SIGNAL GRID ── */
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sig-card{background:var(--sand);border-radius:11px;padding:12px;text-align:center}
+.sig-emoji{font-size:26px;display:block;margin-bottom:5px}
+.sig-title{font-size:12px;font-weight:800;color:var(--dark);margin-bottom:3px}
+.sig-desc{font-size:11px;color:var(--light);line-height:1.4}
+/* ── CHECKLIST ── */
+.cl-stage{font-family:'Playfair Display',Georgia,serif;font-size:15px;color:var(--terra);margin:18px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--sand);display:flex;align-items:center;gap:7px}
+.cl-item{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;background:var(--warm-white);border:1.5px solid var(--sand);border-radius:11px;margin-bottom:7px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(212,132,90,.2)}
+.cl-item.done{background:rgba(139,175,140,.1);border-color:var(--sage)}
+.cl-check{width:21px;height:21px;border-radius:5px;border:2.5px solid var(--peach);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:white;margin-top:1px}
+.cl-item.done .cl-check{background:var(--sage);border-color:var(--sage)}
+.cl-act{font-size:13px;font-weight:700;color:var(--dark)}
+.cl-item.done .cl-act{text-decoration:line-through;color:var(--light)}
+.cl-meta{display:flex;gap:7px;margin-top:3px;flex-wrap:wrap}
+.cl-tag{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:700;background:var(--sand);color:var(--light)}
+.cl-tag.f{background:rgba(212,132,90,.15);color:var(--deep-terra)}
+.cl-tag.t{background:rgba(139,175,140,.2);color:var(--deep-sage)}
+.pbar-wrap{background:var(--sand);border-radius:20px;height:7px;margin:14px 0 4px;overflow:hidden}
+.pbar{height:100%;background:linear-gradient(90deg,var(--sage),var(--deep-sage));border-radius:20px;transition:width .4s}
+.pbar-lbl{text-align:right;font-size:11px;color:var(--light);font-weight:700;margin-bottom:14px}
+/* ── EJERCICIOS ── */
+.ej-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.ej-fbtn{background:var(--sand);border:1.5px solid var(--sand);border-radius:20px;padding:6px 13px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--light);cursor:pointer;touch-action:manipulation}
+.ej-fbtn.active{background:var(--terra);border-color:var(--terra);color:white}
+.ej-card{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:14px;padding:16px 15px;margin-bottom:12px}
+.ej-hdr{display:flex;align-items:flex-start;gap:11px;margin-bottom:9px}
+.ej-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.ej-title{font-weight:800;font-size:14px;color:var(--dark)}
+.ej-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.ej-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.eb-edad{background:rgba(212,132,90,.15);color:var(--deep-terra)}
+.eb-tipo{background:rgba(139,175,140,.2);color:var(--deep-sage)}
+.eb-freq{background:rgba(168,200,216,.25);color:var(--deep-sky)}
+.ej-steps{margin-top:8px}
+.ej-step{display:flex;gap:9px;padding:7px 0;border-bottom:1px dashed var(--sand);font-size:12px;color:var(--mid);line-height:1.5}
+.ej-step:last-child{border-bottom:none}
+.step-n{background:var(--terra);color:white;border-radius:50%;width:19px;height:19px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px}
+.ej-benefit{background:rgba(139,175,140,.1);border-left:3px solid var(--sage);border-radius:0 7px 7px 0;padding:8px 11px;margin-top:9px;font-size:12px;color:var(--mid)}
+/* ── VACUNAS ── */
+.vac-intro{background:linear-gradient(135deg,#5A7D5C,#3A5A3C);border-radius:14px;padding:20px 16px;color:white;margin-bottom:18px}
+.vac-intro h2{font-family:'Playfair Display',Georgia,serif;font-size:18px;margin-bottom:5px}
+.vac-intro p{font-size:12px;opacity:.82;line-height:1.5}
+.vac-age{margin-bottom:18px}
+.vac-age-ttl{font-family:'Playfair Display',Georgia,serif;font-size:14px;color:var(--terra);font-weight:700;margin-bottom:9px;padding-bottom:5px;border-bottom:2px solid var(--sand);display:flex;align-items:center;gap:7px}
+.vac-item{display:flex;align-items:flex-start;gap:11px;background:var(--warm-white);border:1.5px solid var(--sand);border-radius:11px;padding:12px 13px;margin-bottom:7px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(139,175,140,.2);user-select:none}
+.vac-item:active{background:var(--sand)}
+.vac-item.done{background:rgba(139,175,140,.12);border-color:var(--sage)}
+.vac-chk{width:21px;height:21px;border-radius:5px;border:2.5px solid var(--peach);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:white;margin-top:1px;background:transparent}
+.vac-item.done .vac-chk{background:var(--sage);border-color:var(--sage)}
+.vac-name{font-size:13px;font-weight:800;color:var(--dark)}
+.vac-item.done .vac-name{text-decoration:line-through;color:var(--light)}
+.vac-desc{font-size:11px;color:var(--light);margin-top:2px;line-height:1.4}
+/* ── PRIMEROS AUXILIOS ── */
+.pa-calm{background:linear-gradient(135deg,rgba(139,175,140,.2),rgba(168,200,216,.15));border:1.5px solid var(--sage);border-radius:14px;padding:20px 16px;margin-bottom:18px;text-align:center}
+.pa-calm .pa-e{font-size:38px;display:block;margin-bottom:9px}
+.pa-calm h3{font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--dark);margin-bottom:7px}
+.pa-calm p{font-size:13px;color:var(--mid);line-height:1.6}
+.pa-card{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.pa-hdr{padding:13px 15px;display:flex;align-items:center;gap:9px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(212,132,90,.2);user-select:none}
+.pa-hdr:active{background:var(--sand)}
+.pa-hdr-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.pa-hdr h3{font-size:14px;font-weight:800;color:var(--dark);flex:1}
+.pa-arrow{color:var(--light);font-size:12px;transition:transform .2s;flex-shrink:0}
+.pa-hdr.open .pa-arrow{transform:rotate(90deg)}
+.pa-body{display:none;padding:0 15px 15px}
+.pa-body.open{display:block}
+.pa-when{background:rgba(212,132,90,.12);border-radius:7px;padding:9px 11px;margin-bottom:9px;font-size:12px;color:var(--mid)}
+.pa-when strong{color:var(--deep-terra);display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.pa-step{display:flex;gap:9px;padding:7px 0;border-bottom:1px dashed var(--sand);font-size:12px;color:var(--mid);line-height:1.5}
+.pa-step:last-child{border-bottom:none}
+.pa-num{background:var(--deep-terra);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px}
+.pa-emrg{background:#FFF0F0;border:1.5px solid #D45A5A;border-radius:9px;padding:9px 11px;margin-top:9px;font-size:12px;color:#8B2020}
+.pa-emrg strong{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+/* ── REGISTRO ── */
+.reg-intro{background:linear-gradient(135deg,#5A7D5C,#3A5A3C);border-radius:14px;padding:20px 16px;color:white;margin-bottom:18px}
+.reg-intro h2{font-family:'Playfair Display',Georgia,serif;font-size:18px;margin-bottom:4px}
+.reg-intro p{font-size:12px;opacity:.8}
+.date-nav{display:flex;align-items:center;justify-content:space-between;background:var(--warm-white);border:1.5px solid var(--sand);border-radius:13px;padding:11px 15px;margin-bottom:14px}
+.date-nav button{background:var(--sand);border:none;width:32px;height:32px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+.date-lbl{font-weight:800;font-size:14px;color:var(--dark)}
+.date-sub{font-size:11px;color:var(--light);text-align:center}
+.reg-sec{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:14px;padding:16px 14px;margin-bottom:12px}
+.reg-sec-ttl{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--dark);margin-bottom:12px}
+.reg-sec-ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.reg-badge{margin-left:auto;background:var(--sand);border-radius:20px;padding:3px 9px;font-size:11px;font-weight:700;color:var(--terra)}
+.reg-entry{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px dashed var(--sand)}
+.reg-entry:last-child{border-bottom:none}
+.reg-etime{font-size:11px;font-weight:800;color:var(--terra);min-width:50px}
+.reg-edet{flex:1;font-size:12px;color:var(--mid)}
+.reg-edel{background:none;border:none;font-size:14px;cursor:pointer;opacity:.4;touch-action:manipulation}
+.reg-add{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.reg-input{border:1.5px solid var(--sand);border-radius:9px;padding:8px 11px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--dark);background:var(--cream);outline:none;flex:1;min-width:70px}
+.reg-input:focus{border-color:var(--peach)}
+.reg-btn{background:var(--terra);color:white;border:none;border-radius:9px;padding:8px 15px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:11px}
+.pc-box{background:var(--sand);border-radius:11px;padding:11px;text-align:center}
+.pc-lbl{font-size:11px;font-weight:700;color:var(--light);margin-bottom:7px}
+.pc-val{font-size:26px;font-weight:800;color:var(--dark);line-height:1}
+.pc-btns{display:flex;justify-content:center;gap:7px;margin-top:7px}
+.pc-btns button{width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+.pc-m{background:#FFE0E0;color:#D45A5A}
+.pc-p{background:rgba(139,175,140,.3);color:var(--deep-sage)}
+.reg-empty{text-align:center;color:var(--light);font-size:12px;padding:10px 0;font-style:italic}
+.crec-entry{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px dashed var(--sand)}
+.crec-entry:last-child{border-bottom:none}
+.crec-date{font-size:11px;font-weight:800;color:var(--terra);min-width:78px}
+.crec-vals{flex:1;display:flex;gap:10px;font-size:12px;color:var(--mid);flex-wrap:wrap}
+.crec-del{background:none;border:none;font-size:14px;cursor:pointer;opacity:.4;touch-action:manipulation}
+.export-btn{width:100%;background:linear-gradient(135deg,var(--deep-terra),#8B4A2A);color:white;border:none;border-radius:13px;padding:14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:8px;touch-action:manipulation}
+/* ── OVERLAY ── */
+.overlay{position:fixed;inset:0;background:rgba(45,27,14,.65);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.overlay-box{background:#FFFDF9;border-radius:18px;padding:26px 22px;width:100%;max-width:360px;box-shadow:0 8px 40px rgba(45,27,14,.25)}
+.ov-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;text-align:center;margin-bottom:6px;color:var(--dark)}
+.ov-sub{font-size:12px;color:var(--light);text-align:center;margin-bottom:18px}
+.ov-input{width:100%;padding:11px 14px;border:1.5px solid var(--sand);border-radius:11px;font-family:'Nunito',sans-serif;font-size:15px;color:var(--dark);background:var(--cream);outline:none;margin-bottom:14px}
+.ov-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--terra),var(--deep-terra));color:white;border:none;border-radius:11px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:8px;touch-action:manipulation}
+.ov-skip{width:100%;padding:9px;background:none;border:none;color:var(--light);font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;touch-action:manipulation}
+/* ── FOOTER ── */
+.footer{text-align:center;padding:18px;font-size:11px;color:var(--light);border-top:1px solid var(--sand);display:flex;align-items:center;justify-content:center;gap:8px}
+.footer img{width:38px;height:38px;object-fit:contain;opacity:.6}
+
+/* ── TRUST / MEDICAL DISCLAIMER ── */
+.disclaimer{max-width:680px;margin:18px auto 0;padding:0 14px}
+.disclaimer-card{background:#FFFDF9;border:1.5px solid #E8C7B0;border-left:5px solid var(--terra);border-radius:14px;padding:14px 15px;box-shadow:0 2px 10px var(--shadow)}
+.disclaimer-title{font-size:12px;font-weight:900;color:var(--deep-terra);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:flex;gap:7px;align-items:center}
+.disclaimer-text{font-size:12px;line-height:1.55;color:var(--mid)}
+.source-note{font-size:11px;line-height:1.5;color:var(--light);background:rgba(168,200,216,.15);border-left:3px solid var(--sky);border-radius:0 8px 8px 0;padding:9px 11px;margin-top:10px}
+.source-note a{color:var(--deep-sky);font-weight:800;text-decoration:none}
+.quick-note{background:rgba(255,248,240,.85);border:1.5px solid var(--sand);border-radius:12px;padding:11px 13px;margin-bottom:14px;font-size:12px;line-height:1.55;color:var(--mid)}
+.top-btn{position:fixed;right:16px;bottom:18px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--terra),var(--deep-terra));color:white;font-size:18px;box-shadow:0 4px 18px rgba(45,27,14,.25);z-index:200;cursor:pointer;display:none;align-items:center;justify-content:center;touch-action:manipulation}
+.top-btn.show{display:flex}
+@media(max-width:400px){.disclaimer{margin-top:14px}.top-btn{right:12px;bottom:12px}}
+
+@media(max-width:400px){.stage-hdr::after{display:none}.sig-grid{grid-template-columns:1fr}}
+
+/* ── DARK MODE — respeta el sistema del usuario ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Fondos: café oscuro profundo, mantiene calidez PandA */
+    --cream:      #1C1208;
+    --warm-white: #231608;
+    --sand:       #2E1E0E;
+
+    /* Texto: invertido, cálido */
+    --dark:       #F5E6D0;
+    --mid:        #D4B090;
+    --light:      #9A7A60;
+
+    /* Sombras más sutiles en dark */
+    --shadow:     rgba(0,0,0,0.35);
+
+    /* Accentos — ligeramente más brillantes para contraste */
+    --peach:      #F5C9A8;
+    --terra:      #E08E64;
+    --deep-terra: #C07048;
+
+    /* Verdes — igual de vibrantes */
+    --sage:       #9ABF9C;
+    --deep-sage:  #6A8F6C;
+
+    /* Azules — igual */
+    --sky:        #B8D8E8;
+    --deep-sky:   #6A9FB8;
+
+    /* Lavanda — igual */
+    --lavender:   #D4C0E8;
+
+    /* Blanco puro se mantiene para textos sobre fondos de color */
+    --white:      #fff;
+  }
+
+  /* Ajustes específicos que no usan variables */
+  .hero {
+    background: linear-gradient(145deg, #0D0804 0%, #1C1208 50%, #2A3A2A 100%);
+  }
+  .stage-hdr[style*="A85F3A"] {
+    filter: brightness(0.85);
+  }
+  .vac-intro,
+  .reg-intro {
+    filter: brightness(0.9);
+  }
+  .tip-box {
+    background: rgba(139,175,140,0.08);
+  }
+  .warn-box {
+    background: rgba(220,80,60,0.08);
+  }
+  .pa-calm {
+    background: linear-gradient(135deg,rgba(139,175,140,.1),rgba(168,200,216,.08));
+  }
+
+  /* Inputs y controles */
+  .reg-input {
+    background: #2E1E0E;
+    color: #F5E6D0;
+    border-color: #3E2E1E;
+  }
+  .reg-input:focus {
+    border-color: var(--peach);
+  }
+
+  /* Overlay */
+  .overlay-box {
+    background: #231608;
+  }
+  .ov-input {
+    background: #2E1E0E;
+    color: #F5E6D0;
+    border-color: #3E2E1E;
+  }
+
+  /* Nav */
+  .nav-wrap {
+    background: #1C1208;
+    border-bottom-color: #2E1E0E;
+  }
+
+  /* Cards */
+  .card,
+  .ej-card,
+  .vac-item,
+  .pa-card,
+  .reg-sec,
+  .cl-item,
+  .date-nav {
+    background: #231608;
+    border-color: #2E1E0E;
+  }
+  .vac-item:active {
+    background: #2E1E0E;
+  }
+
+  /* Sched */
+  .sched-act {
+    background: #2E1E0E;
+  }
+
+  /* Signal cards */
+  .sig-card,
+  .pc-box {
+    background: #2E1E0E;
+  }
+
+  /* Checklist */
+  .cl-item.done {
+    background: rgba(139,175,140,0.08);
+  }
+
+  /* Footer */
+  .footer {
+    border-top-color: #2E1E0E;
+  }
+
+  /* Disclaimer */
+  .disclaimer-card {
+    background: #231608;
+    border-color: #2E1E0E;
+  }
+
+  /* Top button */
+  .top-btn {
+    background: var(--terra);
+  }
+
+  /* Scrollbar (Chrome/Edge) */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1C1208; }
+  ::-webkit-scrollbar-thumb { background: #3E2E1E; border-radius: 3px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="data:image/png;base64,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" alt="PandA">
+  <div class="hero-badge">baby products &amp; care · Edición Patricio</div>
+  <h1 id="hero-title">Así le hicimos<br>con <em id="hero-name">tu bebé</em></h1>
+  <p>Una guía amorosa para acompañar los primeros 12 meses de tu bebé — basada en nuestra experiencia con Patricio y organizada para consultarla fácil desde el celular.</p>
+  <button class="hero-edit-btn" onclick="showNameEditor()">✏️ Cambiar nombre del bebé</button>
+</div>
+
+<!-- MEDICAL DISCLAIMER -->
+<section class="disclaimer" id="aviso-medico">
+  <div class="disclaimer-card">
+    <div class="disclaimer-title">⚕️ Aviso importante</div>
+    <div class="disclaimer-text">Esta guía es informativa y está basada en nuestra experiencia como papás. No sustituye la evaluación ni las indicaciones de un pediatra. Ante fiebre, dificultad para respirar, alergias, golpes, dudas de alimentación, vacunas o emergencias, consulta a un profesional de salud o llama al 911.</div>
+  </div>
+</section>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="goTab('s0')"    id="tb-s0">    <span class="tab-dot"></span>0–1 mes</button>
+    <button class="tab-btn"        onclick="goTab('s1')"    id="tb-s1">    <span class="tab-dot"></span>1–3 meses</button>
+    <button class="tab-btn"        onclick="goTab('s3')"    id="tb-s3">    <span class="tab-dot"></span>3–6 meses</button>
+    <button class="tab-btn"        onclick="goTab('s6')"    id="tb-s6">    <span class="tab-dot"></span>6–9 meses</button>
+    <button class="tab-btn"        onclick="goTab('s9')"    id="tb-s9">    <span class="tab-dot"></span>9–12 meses</button>
+    <button class="tab-btn"        onclick="goTab('check')" id="tb-check"> <span class="tab-dot"></span>✓ Checklist</button>
+    <button class="tab-btn"        onclick="goTab('sigs')"  id="tb-sigs">  <span class="tab-dot"></span>🔍 Señales</button>
+    <button class="tab-btn"        onclick="goTab('ej')"    id="tb-ej">    <span class="tab-dot"></span>🤸 Ejercicios</button>
+    <button class="tab-btn"        onclick="goTab('vac')"   id="tb-vac">   <span class="tab-dot"></span>💉 Vacunas</button>
+    <button class="tab-btn"        onclick="goTab('pa')"    id="tb-pa">    <span class="tab-dot"></span>🩹 Primeros aux.</button>
+    <button class="tab-btn"        onclick="goTab('reg')"   id="tb-reg">   <span class="tab-dot"></span>📋 Registro</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══ 0-1 MES ═══ -->
+<div class="stage active" id="s0">
+  <div class="stage-hdr" data-emoji="🌙" style="background:linear-gradient(135deg,#A85F3A,#6B3A20)">
+    <div class="stage-lbl">Etapa 1 de 5</div>
+    <h2>0 – 1 mes · El mundo nuevo</h2>
+    <p>Tu bebé llega con todo por descubrir. Esta etapa es de adaptación, calor y contacto.</p>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(212,132,90,.15)">🎯</div><h3>Objetivos<span>Qué está logrando</span></h3></div>
+    <ul class="ilist">
+      <li><span class="dot"></span>Adaptarse a temperatura, luz y sonido del mundo exterior</li>
+      <li><span class="dot"></span>Establecer el <strong>vínculo afectivo</strong> con mamá y papá</li>
+      <li><span class="dot"></span>Regular ciclos de sueño-vigilia (aún sin ritmo definido)</li>
+      <li><span class="dot"></span>Reflejo de succión y agarre activo</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(168,200,216,.2)">👁️</div><h3>Qué esperar<span>Es completamente normal</span></h3></div>
+    <ul class="ilist">
+      <li><span class="dot b"></span>Duerme <strong>16-18 horas/día</strong> en bloques de 2-4 horas</li>
+      <li><span class="dot b"></span>Solo ve a <strong>20-30 cm</strong> — tu cara al amamantar</li>
+      <li><span class="dot b"></span>Come cada <strong>2-3 horas</strong> incluso de noche</li>
+      <li><span class="dot b"></span>Llora como única comunicación: hambre, frío, pañal, sueño</li>
+      <li><span class="dot b"></span>Piel que se pela, ojos lagañosos, cabeza moldeada: todo pasa</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(139,175,140,.2)">✅</div><h3>Qué hacer<span>Rutinas y estimulación</span></h3></div>
+    <ul class="ilist">
+      <li><span class="dot g"></span><strong>Piel con piel diario:</strong> mínimo 30 min. Regula temperatura y fortalece el vínculo</li>
+      <li><span class="dot g"></span><strong>Hablarle y cantarle</strong> mientras lo cambias o bañas</li>
+      <li><span class="dot g"></span><strong>Tummy time:</strong> 1-2 min, 2-3 veces al día sobre tu pecho</li>
+      <li><span class="dot g"></span>Mostrar tu cara a 25 cm — seguirá tu mirada poco a poco</li>
+      <li><span class="dot g"></span><strong>Baño suave:</strong> agua tibia 37°C, sin jabón diario</li>
+    </ul>
+    <div class="tip-box"><div class="tip-lbl">💡 Tip de Patricio</div>Le poníamos una playera usada de mamá cerca (no encima) mientras dormía — el olor lo calmaba cuando no estaba ella. Funcionó desde la primera noche.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(220,80,60,.1)">🚫</div><h3>Qué evitar</h3></div>
+    <ul class="ilist">
+      <li><span class="dot r"></span>Visitas en masa los primeros días</li>
+      <li><span class="dot r"></span>Pantallas, luces brillantes o música muy alta</li>
+      <li><span class="dot r"></span>Almohadas, peluches, cobijas sueltas o protectores acolchados <strong>dentro de la cuna</strong></li>
+      <li><span class="dot r"></span>Sacudirlo para calmar el llanto</li>
+    </ul>
+    <div class="source-note">Sueño seguro: bebé boca arriba, en superficie firme, plana y sin objetos sueltos. Revisa la guía de sueño seguro del CDC/AAP con tu pediatra.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(242,196,160,.25)">🕐</div><h3>Rutina sugerida<span>Flexible, no rígida</span></h3></div>
+    <div class="sched">
+      <div class="sched-row"><div class="sched-time">6–7 AM</div><div class="sched-act"><strong>Despertar + Lactancia</strong>Piel con piel, hablarle, cambio</div></div>
+      <div class="sched-row"><div class="sched-time">7–9 AM</div><div class="sched-act"><strong>Sueño</strong>Cuna, ruido blanco si ayuda</div></div>
+      <div class="sched-row"><div class="sched-time">9–10 AM</div><div class="sched-act"><strong>Lactancia + Tummy time</strong>1-2 min sobre el pecho de papá</div></div>
+      <div class="sched-row"><div class="sched-time">10–12 PM</div><div class="sched-act"><strong>Sueño</strong></div></div>
+      <div class="sched-row"><div class="sched-time">12–2 PM</div><div class="sched-act"><strong>Lactancia + Baño</strong>Día por medio, calma total</div></div>
+      <div class="sched-row"><div class="sched-time">Noche</div><div class="sched-act"><strong>Feeding on demand</strong>Luz tenue, sin estimulación</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 1-3 MESES ═══ -->
+<div class="stage" id="s1">
+  <div class="stage-hdr" data-emoji="😊" style="background:linear-gradient(135deg,#5A8FA8,#3A6A80)">
+    <div class="stage-lbl">Etapa 2 de 5</div>
+    <h2>1 – 3 meses · La primera sonrisa</h2>
+    <p>Aparece la sonrisa social. Tu bebé ya te reconoce y empieza a comunicarse.</p>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(168,200,216,.2)">🎯</div><h3>Hitos clave</h3></div>
+    <ul class="ilist">
+      <li><span class="dot b"></span><strong>Sonrisa social</strong> entre semana 6-8: responde a TU cara</li>
+      <li><span class="dot b"></span>Sigue objetos con los ojos</li>
+      <li><span class="dot b"></span>Levanta la cabeza a 45° durante tummy time</li>
+      <li><span class="dot b"></span>Primeros gorjeos y vocalizaciones</li>
+      <li><span class="dot b"></span>Reconoce tu voz y se gira hacia ella</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(139,175,140,.2)">✅</div><h3>Estimulación recomendada</h3></div>
+    <ul class="ilist">
+      <li><span class="dot g"></span><strong>Tummy time:</strong> 5-10 min, 3 veces al día</li>
+      <li><span class="dot g"></span><strong>Móvil blanco y negro</strong> a 30 cm</li>
+      <li><span class="dot g"></span><strong>Imitarlo:</strong> si hace "aah", repítelo</li>
+      <li><span class="dot g"></span>Masaje suave post-baño con aceite de coco — 5 min</li>
+      <li><span class="dot g"></span>Colores contrastantes: negro, blanco, rojo intenso</li>
+    </ul>
+    <div class="tip-box"><div class="tip-lbl">💡 Tip de Patricio</div>Patricio aguantaba más el tummy time sobre el pecho de papá. El calor y el latido del corazón lo mantenían tranquilo.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(242,196,160,.25)">🕐</div><h3>Rutina diaria</h3></div>
+    <div class="sched">
+      <div class="sched-row"><div class="sched-time">7:00 AM</div><div class="sched-act"><strong>Despertar + Lactancia</strong>Buenos días con caras alegres</div></div>
+      <div class="sched-row"><div class="sched-time">7:30 AM</div><div class="sched-act"><strong>Tummy time</strong>5 min sobre colchoneta</div></div>
+      <div class="sched-row"><div class="sched-time">8–10 AM</div><div class="sched-act"><strong>Siesta</strong></div></div>
+      <div class="sched-row"><div class="sched-time">10:00 AM</div><div class="sched-act"><strong>Lactancia + Juego</strong>Móvil, imitación</div></div>
+      <div class="sched-row"><div class="sched-time">3:00 PM</div><div class="sched-act"><strong>Baño + Masaje</strong>Señal de relajación</div></div>
+      <div class="sched-row"><div class="sched-time">7–8 PM</div><div class="sched-act"><strong>Rutina de noche</strong>Lactancia, oscuridad, silencio</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3-6 MESES ═══ -->
+<div class="stage" id="s3">
+  <div class="stage-hdr" data-emoji="🤲" style="background:linear-gradient(135deg,#8BAF8C,#5A7D5C)">
+    <div class="stage-lbl">Etapa 3 de 5</div>
+    <h2>3 – 6 meses · El descubrimiento</h2>
+    <p>Manos, objetos, risas y rolados. Esta etapa es puro juego y asombro.</p>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(139,175,140,.2)">🎯</div><h3>Hitos clave</h3></div>
+    <ul class="ilist">
+      <li><span class="dot g"></span><strong>Rolado:</strong> boca abajo a boca arriba (4-5 meses)</li>
+      <li><span class="dot g"></span>Agarra objetos y los lleva a la boca</li>
+      <li><span class="dot g"></span>Reconoce su nombre</li>
+      <li><span class="dot g"></span><strong>Risas en carcajadas</strong> — el momento más bonito</li>
+      <li><span class="dot g"></span>Control de cuello completo</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(212,132,90,.15)">✅</div><h3>Estimulación</h3></div>
+    <ul class="ilist">
+      <li><span class="dot"></span>Juguetes de textura: cascabeles, mordedores, telas</li>
+      <li><span class="dot"></span><strong>Espejo irrompible:</strong> se fascina con su reflejo</li>
+      <li><span class="dot"></span>Leer en voz alta con imágenes grandes</li>
+      <li><span class="dot"></span>Canciones con movimiento</li>
+      <li><span class="dot"></span>Asistirlo en rolados — nunca forzar, solo guiar</li>
+    </ul>
+    <div class="tip-box"><div class="tip-lbl">💡 Tip de Patricio</div>A los 4 meses Patricio descubrió sus manos. Las miraba por minutos. Ponerle mitones de colores brillantes lo entretenía fácil 10-15 min.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(168,200,216,.2)">🍽️</div><h3>Alimentación complementaria<span>Solo desde los 6 meses</span></h3></div>
+    <ul class="ilist">
+      <li><span class="dot b"></span>OMS recomienda <strong>lactancia exclusiva hasta 6 meses</strong></li>
+      <li><span class="dot b"></span>Señal de listo: sostiene cabeza, interés en comida, desaparece reflejo de extrusión</li>
+    </ul>
+    <div class="warn-box"><div class="warn-lbl">⚠️ Importante</div>No introducir sólidos antes del mes 4, ni por "dormir más".</div>
+    <div class="source-note">Referencia general: CDC indica que los sólidos suelen iniciar alrededor de los 6 meses y que no se recomiendan antes de los 4 meses. Confirma siempre con el pediatra.</div>
+  </div>
+</div>
+
+<!-- ═══ 6-9 MESES ═══ -->
+<div class="stage" id="s6">
+  <div class="stage-hdr" data-emoji="🥕" style="background:linear-gradient(135deg,#C4884A,#8B5A28)">
+    <div class="stage-lbl">Etapa 4 de 5</div>
+    <h2>6 – 9 meses · Sentado y explorando</h2>
+    <p>Sólidos, gateo próximo, objetos en mano. El mundo se abre de par en par.</p>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(212,132,90,.15)">🎯</div><h3>Hitos clave</h3></div>
+    <ul class="ilist">
+      <li><span class="dot"></span>Se <strong>sienta sin apoyo</strong> (7-8 meses)</li>
+      <li><span class="dot"></span>Inicia <strong>gateo:</strong> arrastrándose primero, luego en 4 puntos</li>
+      <li><span class="dot"></span><strong>Ansiedad de separación</strong> — completamente normal</li>
+      <li><span class="dot"></span>Dice "mamama" y "bababa"</li>
+      <li><span class="dot"></span>Pasa objetos de mano en mano</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(139,175,140,.2)">🥣</div><h3>Alimentación complementaria</h3></div>
+    <ul class="ilist">
+      <li><span class="dot g"></span><strong>Inicio:</strong> alimentos blandos, seguros y del tamaño/textura adecuados para evitar atragantamiento</li>
+      <li><span class="dot g"></span>Introduce <strong>un alimento nuevo cada 3-5 días</strong> para observar tolerancia</li>
+      <li><span class="dot g"></span>Sin miel antes del año. Evita sal y azúcar añadida</li>
+      <li><span class="dot g"></span>Cantidad: <strong>2-4 cucharadas</strong>, sin presión; el bebé decide cuánto comer</li>
+      <li><span class="dot g"></span>Consulta al pediatra sobre alérgenos comunes: huevo, cacahuate/maní, lácteos, trigo, pescado, etc.</li>
+    </ul>
+    <div class="tip-box"><div class="tip-lbl">💡 Tip de Patricio</div>El único alimento que Patricio rechazó desde el inicio fue la papaya. Y está bien — respeta sus señales y sigue ofreciendo variedad.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(168,200,216,.2)">🎮</div><h3>Juego y estimulación</h3></div>
+    <ul class="ilist">
+      <li><span class="dot b"></span><strong>Peekaboo:</strong> enseña que las cosas existen aunque no se vean</li>
+      <li><span class="dot b"></span>Cajitas, tapas, recipientes vacíos — el mejor juguete</li>
+      <li><span class="dot b"></span>Nombra todo: "ahora te pongo los zapatos"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══ 9-12 MESES ═══ -->
+<div class="stage" id="s9">
+  <div class="stage-hdr" data-emoji="🚶" style="background:linear-gradient(135deg,#7A5CBF,#4A3A8A)">
+    <div class="stage-lbl">Etapa 5 de 5</div>
+    <h2>9 – 12 meses · Casi un caminante</h2>
+    <p>Primeras palabras, primeros pasos. La recta final del primer año.</p>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(196,176,216,.25)">🎯</div><h3>Hitos clave</h3></div>
+    <ul class="ilist">
+      <li><span class="dot p"></span>Se pone de pie agarrándose, da pasos laterales</li>
+      <li><span class="dot p"></span><strong>Primera palabra con significado</strong> (mamá, papá, agua)</li>
+      <li><span class="dot p"></span>Agarre de pinza (pulgar + índice)</li>
+      <li><span class="dot p"></span>Entiende: "dame", "no", "ven"</li>
+      <li><span class="dot p"></span>Come con los dedos, texturas más gruesas</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(139,175,140,.2)">✅</div><h3>Estimulación</h3></div>
+    <ul class="ilist">
+      <li><span class="dot g"></span><strong>Bloques apilables:</strong> coordinación y causa-efecto</li>
+      <li><span class="dot g"></span><strong>Finger food:</strong> plátano, aguacate, zanahoria cocida</li>
+      <li><span class="dot g"></span>Leer juntos cada noche</li>
+      <li><span class="dot g"></span>Push walker — no andadera (retrasa el equilibrio real)</li>
+    </ul>
+    <div class="tip-box"><div class="tip-lbl">💡 Tip de Patricio</div>Algo que aprendimos: cuando Patricio se caía en la colchoneta, lo dejábamos levantarse solo. Le enseñó que puede. Nuestra parte fue estar cerca.</div>
+    <div class="warn-box"><div class="warn-lbl">⚠️ Consulta al pediatra si a los 12 meses...</div>No señala objetos, no dice ninguna palabra, no gatea ni hace contacto visual. La detección temprana hace toda la diferencia.</div>
+  </div>
+</div>
+
+<!-- ═══ CHECKLIST ═══ -->
+<div class="stage" id="check">
+  <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:20px;margin-bottom:6px;">Checklist diario 🐼</h2>
+  <p style="color:var(--light);font-size:13px;margin-bottom:14px;">Toca cada actividad para marcarla</p>
+  <div class="quick-note">Úsalo como una guía flexible, no como una lista de obligación. Cada bebé avanza a su ritmo; lo importante es observar patrones, disfrutar el proceso y consultar al pediatra si algo preocupa.</div>
+  <div class="pbar-wrap"><div class="pbar" id="cl-pbar"></div></div>
+  <div class="pbar-lbl" id="cl-lbl">0 completadas</div>
+  <div id="cl-list"></div>
+</div>
+
+<!-- ═══ SEÑALES ═══ -->
+<div class="stage" id="sigs">
+  <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:20px;margin-bottom:6px;">Señales del bebé 🔍</h2>
+  <p style="color:var(--light);font-size:13px;margin-bottom:18px;">Lee lo que tu bebé no puede decir con palabras</p>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(212,132,90,.15)">🍼</div><h3>Señales de hambre<span>Actúa antes del llanto</span></h3></div>
+    <div class="sig-grid">
+      <div class="sig-card"><span class="sig-emoji">👅</span><div class="sig-title">Hociqueo</div><div class="sig-desc">Gira la cabeza buscando pecho o mamila</div></div>
+      <div class="sig-card"><span class="sig-emoji">👊</span><div class="sig-title">Mano a boca</div><div class="sig-desc">Se chupa el puño o los dedos</div></div>
+      <div class="sig-card"><span class="sig-emoji">😠</span><div class="sig-title">Inquietud</div><div class="sig-desc">Mueve brazos y piernas, se arquea</div></div>
+      <div class="sig-card"><span class="sig-emoji">😭</span><div class="sig-title">Llanto</div><div class="sig-desc">Señal tardía — alimenta antes</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(168,200,216,.2)">😴</div><h3>Señales de sueño<span>La ventana se cierra rápido</span></h3></div>
+    <div class="sig-grid">
+      <div class="sig-card"><span class="sig-emoji">😪</span><div class="sig-title">Frotarse ojos</div><div class="sig-desc">Ya está cansado — acuéstalo ya</div></div>
+      <div class="sig-card"><span class="sig-emoji">👁️</span><div class="sig-title">Vista fija</div><div class="sig-desc">Mirada perdida, deja de seguir objetos</div></div>
+      <div class="sig-card"><span class="sig-emoji">🥱</span><div class="sig-title">Bostezo</div><div class="sig-desc">Señal clara y directa</div></div>
+      <div class="sig-card"><span class="sig-emoji">😣</span><div class="sig-title">Irritabilidad</div><div class="sig-desc">Cansancio pasado — más difícil dormirlo</div></div>
+    </div>
+    <div class="tip-box" style="margin-top:12px"><div class="tip-lbl">⏱ Ventanas de sueño</div>0-1 mes: máx 45-60 min · 1-3 meses: 60-90 min · 3-6 meses: 90-120 min · 6-12 meses: 2-3 horas</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><div class="card-icon" style="background:rgba(220,80,60,.1)">⚡</div><h3>Sobreestimulación</h3></div>
+    <ul class="ilist">
+      <li><span class="dot r"></span><strong>Gira la cara:</strong> aparta la mirada de ti o del juguete</li>
+      <li><span class="dot r"></span><strong>Arquea la espalda</strong> intentando alejarse</li>
+      <li><span class="dot r"></span>Llanto sin razón después de mucha actividad</li>
+      <li><span class="dot r"></span>Hipo, estornudos, color rojizo en cara</li>
+    </ul>
+    <div class="warn-box"><div class="warn-lbl">💡 Qué hacer</div>Lugar tranquilo, luz baja, voz suave. No significa que hiciste algo mal.</div>
+  </div>
+</div>
+
+<!-- ═══ EJERCICIOS ═══ -->
+<div class="stage" id="ej">
+  <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:20px;margin-bottom:6px;">Ejercicios 🤸</h2>
+  <p style="color:var(--light);font-size:13px;margin-bottom:14px;">Estimulación, digestión y desarrollo motor por etapa</p>
+  <div class="ej-filters" id="ej-filters">
+    <button class="ej-fbtn active" onclick="filterEj('all',this)">Todos</button>
+    <button class="ej-fbtn" onclick="filterEj('0-1',this)">0–1 mes</button>
+    <button class="ej-fbtn" onclick="filterEj('1-3',this)">1–3 meses</button>
+    <button class="ej-fbtn" onclick="filterEj('3-6',this)">3–6 meses</button>
+    <button class="ej-fbtn" onclick="filterEj('6-9',this)">6–9 meses</button>
+    <button class="ej-fbtn" onclick="filterEj('9-12',this)">9–12 meses</button>
+    <button class="ej-fbtn" onclick="filterEj('dig',this)">🫶 Digestión</button>
+  </div>
+  <div id="ej-list"></div>
+</div>
+
+<!-- ═══ VACUNAS ═══ -->
+<div class="stage" id="vac">
+  <div class="vac-intro">
+    <h2>💉 Esquema de vacunación</h2>
+    <p>Referencia general para bebés en Estados Unidos. Toca cada vacuna al aplicarla y confirma fechas exactas con tu pediatra.</p>
+  </div>
+  <div class="source-note" style="margin-bottom:14px">Basado en el calendario de inmunización infantil del CDC. Algunas vacunas dependen de edad, producto usado, temporada, historial médico y disponibilidad. No retrases ni adelantes vacunas sin indicación médica.</div>
+  <div class="pbar-wrap"><div class="pbar" id="vac-pbar"></div></div>
+  <div class="pbar-lbl" id="vac-lbl">0 de 0 aplicadas</div>
+  <div id="vac-list"></div>
+</div>
+
+<!-- ═══ PRIMEROS AUXILIOS ═══ -->
+<div class="stage" id="pa">
+  <div class="pa-calm">
+    <span class="pa-e">🫶</span>
+    <h3>Antes de leer esto, respira.</h3>
+    <p>Esta sección es solo informativa — para que nunca te tome por sorpresa algo que tiene solución. No reemplaza capacitación en primeros auxilios ni atención médica. <strong>Todo va a estar bien.</strong></p>
+  </div>
+  <div class="source-note" style="margin-bottom:14px">Para ingesta accidental o posible intoxicación en EE.UU., Poison Control atiende 24/7 al 1-800-222-1222. Si hay dificultad para respirar, convulsiones, inconsciencia o labios azules, llama primero al 911.</div>
+  <div id="pa-list"></div>
+  <div style="background:#FFF0F0;border:1.5px solid #D45A5A;border-radius:13px;padding:14px;text-align:center;margin-top:8px">
+    <div style="font-size:22px;margin-bottom:5px">🚨</div>
+    <div style="font-weight:800;font-size:13px;color:#8B2020;margin-bottom:4px">Emergencias USA</div>
+    <div style="font-size:20px;font-weight:800;color:#D42020;letter-spacing:2px">911</div>
+    <div style="font-size:11px;color:#8B6060;margin-top:5px">Poison Control: 1-800-222-1222</div>
+  </div>
+</div>
+
+<!-- ═══ REGISTRO ═══ -->
+<div class="stage" id="reg">
+  <div class="reg-intro">
+    <h2>📋 Registro diario</h2>
+    <p>Registra siestas, biberones y pañales. Genera reporte para el pediatra.</p>
+  </div>
+  <div class="date-nav">
+    <button onclick="changeDay(-1)">◀</button>
+    <div style="text-align:center">
+      <div class="date-lbl" id="d-lbl">Hoy</div>
+      <div class="date-sub" id="d-sub"></div>
+    </div>
+    <button onclick="changeDay(1)">▶</button>
+  </div>
+  <div class="reg-sec">
+    <div class="reg-sec-ttl"><div class="reg-sec-ico" style="background:rgba(168,200,216,.2)">😴</div>Siestas<span class="reg-badge" id="s-total">0 min</span></div>
+    <div id="s-list"></div>
+    <div class="reg-add">
+      <input class="reg-input" id="s-hora" type="time">
+      <input class="reg-input" id="s-dur" type="number" min="1" max="300" placeholder="Min" style="max-width:70px">
+      <button class="reg-btn" onclick="addSiesta()">+ Agregar</button>
+    </div>
+  </div>
+  <div class="reg-sec">
+    <div class="reg-sec-ttl"><div class="reg-sec-ico" style="background:rgba(242,196,160,.3)">🍼</div>Biberón / Lactancia<span class="reg-badge" id="b-total">0 tomas</span></div>
+    <div id="b-list"></div>
+    <div class="reg-add">
+      <input class="reg-input" id="b-hora" type="time">
+      <input class="reg-input" id="b-ml" type="number" min="1" max="500" placeholder="ml (opcional)" style="max-width:120px">
+      <button class="reg-btn" onclick="addBibi()">+ Agregar</button>
+    </div>
+  </div>
+  <div class="reg-sec">
+    <div class="reg-sec-ttl"><div class="reg-sec-ico" style="background:rgba(196,176,216,.25)">🧷</div>Pañales<span class="reg-badge" id="p-total">0 cambios</span></div>
+    <div class="pc-grid">
+      <div class="pc-box"><div class="pc-lbl">💧 Mojados</div><div class="pc-val" id="p-moj">0</div><div class="pc-btns"><button class="pc-m" onclick="updPanal('m',-1)">−</button><button class="pc-p" onclick="updPanal('m',1)">+</button></div></div>
+      <div class="pc-box"><div class="pc-lbl">💩 Sucios</div><div class="pc-val" id="p-suc">0</div><div class="pc-btns"><button class="pc-m" onclick="updPanal('s',-1)">−</button><button class="pc-p" onclick="updPanal('s',1)">+</button></div></div>
+    </div>
+  </div>
+  <div class="reg-sec">
+    <div class="reg-sec-ttl"><div class="reg-sec-ico" style="background:rgba(196,176,216,.25)">📏</div>Crecimiento — Visitas al pediatra</div>
+    <div id="crec-list"></div>
+    <div class="reg-add" style="flex-wrap:wrap;gap:6px;margin-top:12px">
+      <input class="reg-input" id="c-fecha" type="date" style="flex:1;min-width:130px">
+      <input class="reg-input" id="c-peso" type="number" step="0.01" placeholder="Peso (kg)" style="max-width:100px">
+      <input class="reg-input" id="c-talla" type="number" step="0.1" placeholder="Talla (cm)" style="max-width:100px">
+      <input class="reg-input" id="c-pc" type="number" step="0.1" placeholder="P.C. (cm)" style="max-width:100px">
+      <button class="reg-btn" onclick="addCrec()" style="width:100%">+ Registrar visita</button>
+    </div>
+  </div>
+  <div class="reg-sec">
+    <div class="reg-sec-ttl"><div class="reg-sec-ico" style="background:rgba(139,175,140,.2)">📝</div>Notas del día</div>
+    <textarea id="reg-notas" class="reg-input" rows="3" placeholder="Observaciones, síntomas, humor del bebé..." style="width:100%;resize:none" oninput="saveNotas()"></textarea>
+  </div>
+  <button class="export-btn" onclick="showExportPicker()">📄 Generar reporte para pediatra</button>
+  <p style="text-align:center;font-size:11px;color:var(--light);margin-top:7px;margin-bottom:20px">Incluye análisis por rango de fechas</p>
+</div>
+
+</div><!-- /main -->
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+
+<div class="footer">
+  <img src="data:image/png;base64,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" alt="PandA">
+  PandA baby products &amp; care · Así le hicimos · Austin, TX · Guía informativa, no médica
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// STORAGE — safe wrapper with in-memory fallback
+// ═══════════════════════════════════════════════════
+const _mem = {};
+const store = {
+  get(k)    { try { return localStorage.getItem(k);    } catch(e) { return _mem[k]||null; } },
+  set(k,v)  { try { localStorage.setItem(k,v);         } catch(e) { _mem[k]=String(v);   } },
+  del(k)    { try { localStorage.removeItem(k);        } catch(e) { delete _mem[k];       } },
+  ok()      { try { localStorage.setItem('_t','1'); localStorage.removeItem('_t'); return true; } catch(e) { return false; } }
+};
+
+// ═══════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════
+function goTab(id) {
+  document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('tb-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id==='check') renderChecklist();
+  if (id==='ej')    renderEj('all');
+  if (id==='vac')   renderVac();
+  if (id==='pa')    renderPA();
+  if (id==='reg')   { renderReg(); renderCrec(); }
+}
+
+// ═══════════════════════════════════════════════════
+// BABY NAME
+// ═══════════════════════════════════════════════════
+const NAME_KEY = 'panda_name_v1';
+function getBabyName() { return store.get(NAME_KEY) || 'tu bebé'; }
+
+function applyName(n) {
+  document.getElementById('hero-name').textContent = n;
+}
+
+function showNameEditor() {
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.id = 'name-ov';
+  ov.innerHTML = `
+    <div class="overlay-box">
+      <div style="font-size:32px;text-align:center;margin-bottom:10px">🐼</div>
+      <div class="ov-title">¿Cómo se llama el bebé?</div>
+      <div class="ov-sub">Personaliza la guía con el nombre del pequeño</div>
+      <input class="ov-input" id="name-inp" type="text" placeholder="Ej: Patricio, Sofía…">
+      <button class="ov-btn" onclick="saveName()">¡Guardar nombre! 🎉</button>
+      <button class="ov-skip" onclick="closeOv('name-ov')">Continuar sin cambiar</button>
+    </div>`;
+  ov.addEventListener('click', e => { if(e.target===ov) closeOv('name-ov'); });
+  document.body.appendChild(ov);
+  const cur = getBabyName();
+  if(cur!=='tu bebé') document.getElementById('name-inp').value = cur;
+  setTimeout(()=>document.getElementById('name-inp').focus(), 100);
+}
+
+function saveName() {
+  const v = document.getElementById('name-inp').value.trim();
+  if(v) { store.set(NAME_KEY, v); applyName(v); }
+  closeOv('name-ov');
+}
+
+function closeOv(id) {
+  const el = document.getElementById(id);
+  if(el) el.remove();
+}
+
+// ═══════════════════════════════════════════════════
+// CHECKLIST
+// ═══════════════════════════════════════════════════
+const CL_KEY = 'panda_cl_v1';
+const CL_ITEMS = [
+  {s:'🌙 0–1 mes',   a:'Piel con piel',            f:'Diario',      t:'Vínculo'},
+  {s:'🌙 0–1 mes',   a:'Tummy time (1-2 min)',      f:'2-3x/día',   t:'Motor'},
+  {s:'🌙 0–1 mes',   a:'Hablarle y cantarle',       f:'Diario',      t:'Lenguaje'},
+  {s:'🌙 0–1 mes',   a:'Baño suave 37°C',           f:'Día por medio',t:'Cuidado'},
+  {s:'😊 1–3 meses', a:'Tummy time (5-10 min)',     f:'3x/día',     t:'Motor'},
+  {s:'😊 1–3 meses', a:'Imitación de gorjeos',      f:'Diario',      t:'Lenguaje'},
+  {s:'😊 1–3 meses', a:'Masaje suave post-baño',    f:'Diario',      t:'Vínculo'},
+  {s:'😊 1–3 meses', a:'Móvil blanco y negro',      f:'Diario',      t:'Visual'},
+  {s:'🤲 3–6 meses', a:'Asistir en rolados',        f:'2-3x/día',   t:'Motor'},
+  {s:'🤲 3–6 meses', a:'Espejo irrompible',         f:'Diario',      t:'Social'},
+  {s:'🤲 3–6 meses', a:'Leer en voz alta',          f:'Diario',      t:'Lenguaje'},
+  {s:'🤲 3–6 meses', a:'Ejercicio de bicis',        f:'2x/día',     t:'Motor'},
+  {s:'🥕 6–9 meses', a:'Introducir nuevo alimento', f:'c/3-5 días', t:'Nutrición'},
+  {s:'🥕 6–9 meses', a:'Juego de peekaboo',         f:'Diario',      t:'Social'},
+  {s:'🥕 6–9 meses', a:'Nombrar objetos del entorno',f:'Todo el día',t:'Lenguaje'},
+  {s:'🥕 6–9 meses', a:'Espacio seguro en el suelo',f:'Diario',      t:'Motor'},
+  {s:'🚶 9–12 meses',a:'Lectura nocturna',          f:'Diario',      t:'Lenguaje'},
+  {s:'🚶 9–12 meses',a:'Finger food en comidas',    f:'Diario',      t:'Nutrición'},
+  {s:'🚶 9–12 meses',a:'Bloques apilables',         f:'Diario',      t:'Cognitivo'},
+  {s:'🚶 9–12 meses',a:"Practicar 'dame' y gestos", f:'Diario',      t:'Social'},
+];
+
+function loadCL() { try { return new Set(JSON.parse(store.get(CL_KEY)||'[]')); } catch(e) { return new Set(); } }
+function saveCL(s) { store.set(CL_KEY, JSON.stringify([...s])); }
+
+function renderChecklist() {
+  const done = loadCL();
+  const pct = Math.round(done.size/CL_ITEMS.length*100);
+  document.getElementById('cl-pbar').style.width = pct+'%';
+  document.getElementById('cl-lbl').textContent = done.size+' de '+CL_ITEMS.length+' completadas';
+  let html='', cur='';
+  CL_ITEMS.forEach((item,i) => {
+    if(item.s!==cur) { cur=item.s; html+=`<div class="cl-stage">${item.s}</div>`; }
+    const d=done.has(i);
+    html+=`<div class="cl-item ${d?'done':''}" onclick="toggleCL(${i})">
+      <div class="cl-check">${d?'✓':''}</div>
+      <div><div class="cl-act">${item.a}</div>
+      <div class="cl-meta"><span class="cl-tag f">⏱ ${item.f}</span><span class="cl-tag t">${item.t}</span></div></div>
+    </div>`;
+  });
+  html+=`<div style="text-align:right;margin-top:8px"><button onclick="resetCL()" style="font-size:11px;color:var(--light);background:none;border:1px solid var(--sand);padding:4px 10px;border-radius:20px;cursor:pointer;font-family:inherit;touch-action:manipulation">↺ Reiniciar</button></div>`;
+  document.getElementById('cl-list').innerHTML=html;
+}
+
+function toggleCL(i) {
+  const d=loadCL();
+  d.has(i)?d.delete(i):d.add(i);
+  saveCL(d); renderChecklist();
+}
+function resetCL() { if(confirm('¿Reiniciar checklist?')){ saveCL(new Set()); renderChecklist(); } }
+
+// ═══════════════════════════════════════════════════
+// EJERCICIOS
+// ═══════════════════════════════════════════════════
+const EJ = [
+  {e:'0-1',t:'Digestión',ic:'🫶',bg:'rgba(212,132,90,.15)',title:'Masaje anti-cólicos I-L-U',freq:'2-3 veces/día, después de comer',benefit:'Alivia gases, reduce el llanto por cólico hasta un 45%',
+    steps:['Acuesta a tu bebé boca arriba sobre superficie firme y tibia.','Con yema de los dedos, traza una "I" bajando por su lado izquierdo del abdomen.','Traza una "L" invertida: de izquierda a derecha por arriba, luego baja.','Traza una "U" invertida: sube por la derecha, cruza por arriba, baja por la izquierda.','Presión muy suave, en sentido de las manecillas del reloj. 3-5 minutos.']},
+  {e:'0-1',t:'Motor',ic:'🦵',bg:'rgba(168,200,216,.2)',title:'Movimientos pasivos de piernas',freq:'2 veces/día, 3-5 minutos',benefit:'Activa circulación y ayuda a expulsar gases',
+    steps:['Bebé boca arriba. Toma sus tobillos suavemente con ambas manos.','Dobla ambas rodillas hacia el pecho y mantén 3 segundos.','Extiende las piernas. Repite 5 veces.','Alterna: dobla rodilla derecha mientras extiendes la izquierda (bici).','Siempre movimientos lentos. Si el bebé se resiste, para.']},
+  {e:'0-1',t:'Estimulación',ic:'✋',bg:'rgba(196,176,216,.2)',title:'Estimulación táctil con texturas',freq:'1 vez/día, 5 minutos',benefit:'Activa el sistema sensorial y fortalece el vínculo',
+    steps:['Prepara 2-3 telas: suave (algodón), rugosa (lino), satinada.','Pasa cada tela por sus palmas y pies suavemente.','Si aparta la mano, suficiente con esa textura.','Nombra lo que siente: "esto es suave", "esto es diferente".','Evitar si tiene hambre o justo antes de dormir.']},
+  {e:'1-3',t:'Visual',ic:'👁️',bg:'rgba(168,200,216,.2)',title:'Seguimiento visual activo',freq:'3 veces/día, 3-5 minutos',benefit:'Desarrolla coordinación ojo-objeto y músculos oculares',
+    steps:['Usa un objeto contrastante (blanco/negro, rojo) de aprox 7cm.','Posiciónalo a 25-30cm hasta que fije la mirada.','Muévelo lentamente hacia la derecha, espera a que sus ojos sigan.','Regresa al centro, luego a la izquierda. Luego arriba y abajo.','Si deja de seguir, está cansado — para y retoma después.']},
+  {e:'1-3',t:'Digestión',ic:'🫶',bg:'rgba(212,132,90,.15)',title:'Posición anti-reflujo post-toma',freq:'Después de cada toma, 20-30 minutos',benefit:'Reduce reflujo y escupitajos frecuentes en esta etapa',
+    steps:['Mantén al bebé erguido a 45° mínimo después de alimentar.','Apóyalo contra tu pecho, su cabeza sobre tu hombro.','Palmaditas suaves en la espalda para provocar el eructo.','Alterna palmaditas con frotado circular en la espalda.','No acuestes al bebé plano en los primeros 20-30 min post-toma.']},
+  {e:'1-3',t:'Motor',ic:'💪',bg:'rgba(139,175,140,.2)',title:'Gimnasia suave de brazos',freq:'2 veces/día, 3 minutos',benefit:'Fortalece hombros y prepara para tummy time y rolados',
+    steps:['Bebé boca arriba. Toma sus muñecas suavemente.','Abre sus brazos hacia los lados. Mantén 2 segundos.','Crúzalos sobre su pecho. Luego abre de nuevo. 5 veces.','Eleva ambos brazos sobre su cabeza y regresa. 5 veces.','Termina con un abrazo: acerca sus brazos hacia ti.']},
+  {e:'3-6',t:'Motor',ic:'🔄',bg:'rgba(139,175,140,.2)',title:'Técnica de asistencia al rolado',freq:'3-4 veces/día al cambiar pañal',benefit:'Facilita el primer rolado sin forzar (hito 4-5 meses)',
+    steps:['Bebé boca arriba. Coloca juguete llamativo a un costado.','Si no gira solo, pon tu mano detrás de su cadera del mismo lado.','Guía suavemente la cadera hacia el juguete — NO empujes la espalda.','Permite que su propio peso complete el movimiento.','Celebra cada intento aunque no complete el rolado.']},
+  {e:'3-6',t:'Digestión',ic:'🫶',bg:'rgba(212,132,90,.15)',title:'Masaje de espalda en posición prono',freq:'1 vez/día, 5 minutos',benefit:'Estimula el sistema digestivo y fortalece la espalda',
+    steps:['Bebé boca abajo sobre tu antebrazo o superficie firme.','Con la palma, frota su espalda de arriba hacia abajo suavemente.','Pequeños círculos a lo largo de la columna (sin presionar sobre ella).','Observa si levanta la cabeza — es bonus de tummy time.','Ideal 30-45 minutos después de comer.']},
+  {e:'3-6',t:'Estimulación',ic:'👂',bg:'rgba(196,176,216,.2)',title:'Estimulación auditiva direccional',freq:'2 veces/día, 3 minutos',benefit:'Desarrolla localización de sonidos y atención sostenida',
+    steps:['Usa un sonajero. Bebé boca arriba o semisentado.','Agita el objeto a 30cm a su derecha. Espera a que gire la cabeza.','Repite a la izquierda, luego arriba y detrás.','Varía intensidad: suave, luego un poco más fuerte.','Si gira y localiza el sonido: ¡celebra! Es hito neurológico.']},
+  {e:'6-9',t:'Motor',ic:'🐾',bg:'rgba(139,175,140,.2)',title:'Preparación activa para el gateo',freq:'4-5 veces/día, 3-5 minutos',benefit:'Fortalece caderas, rodillas y core — base del gateo',
+    steps:['Pon al bebé en posición de 4 puntos (manos y rodillas).','Pasa una toalla enrollada bajo su barriga si necesita apoyo.','Mueve gentilmente su peso hacia adelante y atrás.','Coloca un juguete al frente para motivarlo.','Si se desploma, está bien — la fuerza llega con la práctica diaria.']},
+  {e:'6-9',t:'Digestión',ic:'🫶',bg:'rgba(212,132,90,.15)',title:'Masaje abdominal antes del baño',freq:'Diario, antes del baño de la tarde',benefit:'Reduce estreñimiento al introducir sólidos',
+    steps:['Bebé boca arriba, ropa quitada. Una gota de aceite de coco tibio.','Círculos grandes en sentido horario alrededor del ombligo. 10 veces.','Presión suave desde el ombligo hacia las caderas. 5 veces.','Dobla suavemente las rodillas hacia el pecho 5 veces.','Termina con palmaditas suaves en la barriguita.']},
+  {e:'6-9',t:'Estimulación',ic:'🖐️',bg:'rgba(196,176,216,.2)',title:'Estimulación del agarre de pinza',freq:'2-3 veces/día en momentos de juego',benefit:'Prepara la coordinación fina para el hito 9 meses',
+    steps:['Usa cereal tipo Cheerios o bolitas de plastilina suave.','Colócalos en una bandeja frente al bebé sentado.','Observa cómo intenta agarrarlos — primero con toda la mano.','No corrijas ni guíes su mano — el cerebro aprende viendo el resultado.','A los 8-9 meses usará pulgar + índice solo. Dale tiempo.']},
+  {e:'9-12',t:'Motor',ic:'🚶',bg:'rgba(139,175,140,.2)',title:'Marcha asistida y equilibrio',freq:'3-5 veces/día, 5-10 minutos',benefit:'Desarrolla confianza para caminar y equilibrio dinámico',
+    steps:['Ofrece tus dedos índices para que se sostenga de pie.','Camina lentamente hacia atrás mientras él avanza.','Reduce soporte gradualmente: de 2 dedos a 1, luego toca solo su muñeca.','Cuando sea estable, suelta brevemente y vuelve a dar soporte.','No uses andaderas — retrasan el equilibrio real. Sí a push walkers.']},
+  {e:'9-12',t:'Estimulación',ic:'🗣️',bg:'rgba(196,176,216,.2)',title:'Juego de nombrar y señalar',freq:'Todo el día, integrado a la rutina',benefit:'Expande vocabulario activo y conecta objetos con palabras',
+    steps:['Durante el desayuno: nombra todo — "cuchara", "taza", "leche".','Al bañarlo: "agua caliente", "jabón", "toalla suave".','Pregunta: "¿dónde está el perro?" y espera que señale.','Cuando señala, confirma: "¡Sí! Eso es el ventilador".','No simplifiques — el cerebro absorbe vocabulario real.']},
+  {e:'9-12',t:'Digestión',ic:'🫶',bg:'rgba(212,132,90,.15)',title:'Rutina post-comida para digestión',freq:'Después de cada comida sólida',benefit:'Facilita el tránsito al introducir más texturas',
+    steps:['10 minutos de juego activo en el suelo después de comer.','El gateo y los movimientos en 4 puntos son los mejores digestivos.','Si hay gas (barriga dura, irritabilidad): masaje I-L-U por 2 min.','Ofrece agua en vaso entrenador — ya no en biberón para sólidos.','Evitar juegos muy activos justo después — puede provocar regurgitación.']},
+];
+
+function renderEj(filter) {
+  const items = filter==='all' ? EJ : filter==='dig' ? EJ.filter(e=>e.t==='Digestión') : EJ.filter(e=>e.e===filter);
+  if(!items.length) { document.getElementById('ej-list').innerHTML='<p style="text-align:center;color:var(--light);padding:20px">Sin ejercicios para este filtro</p>'; return; }
+  document.getElementById('ej-list').innerHTML = items.map(e=>`
+    <div class="ej-card">
+      <div class="ej-hdr">
+        <div class="ej-icon" style="background:${e.bg}">${e.ic}</div>
+        <div><div class="ej-title">${e.title}</div>
+        <div class="ej-badges"><span class="ej-badge eb-edad">${e.e} meses</span><span class="ej-badge eb-tipo">${e.t}</span><span class="ej-badge eb-freq">⏱ ${e.freq}</span></div></div>
+      </div>
+      <div class="ej-steps">${e.steps.map((s,i)=>`<div class="ej-step"><span class="step-n">${i+1}</span><span>${s}</span></div>`).join('')}</div>
+      <div class="ej-benefit">✨ <strong>Beneficio:</strong> ${e.benefit}</div>
+    </div>`).join('');
+}
+
+function filterEj(f, btn) {
+  document.querySelectorAll('.ej-fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderEj(f);
+}
+
+// ═══════════════════════════════════════════════════
+// VACUNAS
+// ═══════════════════════════════════════════════════
+const VAC_KEY = 'panda_vac_v1';
+const VACS = [
+  {age:'Al nacer',id:'hepb0',name:'Hepatitis B (HepB) — 1ra dosis',desc:'Usualmente se aplica al nacimiento en Estados Unidos.'},
+  {age:'1–2 meses',id:'hepb1',name:'Hepatitis B (HepB) — 2da dosis',desc:'Segunda dosis según indicación del pediatra.'},
+  {age:'2 meses',id:'rv1',name:'Rotavirus (RV) — 1ra dosis',desc:'Vacuna oral. El número total de dosis depende de la marca usada.'},
+  {age:'2 meses',id:'dtap1',name:'DTaP — 1ra dosis',desc:'Difteria, tétanos y tos ferina.'},
+  {age:'2 meses',id:'hib1',name:'Hib — 1ra dosis',desc:'Haemophilus influenzae tipo b.'},
+  {age:'2 meses',id:'pcv1',name:'Neumocócica conjugada (PCV) — 1ra dosis',desc:'Protege contra enfermedad neumocócica.'},
+  {age:'2 meses',id:'ipv1',name:'Polio inactivada (IPV) — 1ra dosis',desc:'En Estados Unidos se usa IPV inyectable, no polio oral de rutina.'},
+  {age:'4 meses',id:'rv2',name:'Rotavirus (RV) — 2da dosis',desc:'Segunda dosis oral.'},
+  {age:'4 meses',id:'dtap2',name:'DTaP — 2da dosis',desc:'Segunda dosis.'},
+  {age:'4 meses',id:'hib2',name:'Hib — 2da dosis',desc:'Segunda dosis.'},
+  {age:'4 meses',id:'pcv2',name:'Neumocócica conjugada (PCV) — 2da dosis',desc:'Segunda dosis.'},
+  {age:'4 meses',id:'ipv2',name:'Polio inactivada (IPV) — 2da dosis',desc:'Segunda dosis.'},
+  {age:'6 meses',id:'rv3',name:'Rotavirus (RV) — posible 3ra dosis',desc:'Solo algunas marcas requieren tercera dosis. Confirma con el pediatra.'},
+  {age:'6 meses',id:'dtap3',name:'DTaP — 3ra dosis',desc:'Tercera dosis de la serie primaria.'},
+  {age:'6 meses',id:'hib3',name:'Hib — posible 3ra dosis',desc:'Depende de la marca/esquema utilizado.'},
+  {age:'6 meses',id:'pcv3',name:'Neumocócica conjugada (PCV) — 3ra dosis',desc:'Tercera dosis.'},
+  {age:'6–18 meses',id:'hepb2',name:'Hepatitis B (HepB) — 3ra dosis',desc:'La tercera dosis se aplica dentro de esta ventana, según el esquema.'},
+  {age:'6–18 meses',id:'ipv3',name:'Polio inactivada (IPV) — 3ra dosis',desc:'Tercera dosis dentro de esta ventana.'},
+  {age:'6 meses en adelante',id:'flu1',name:'Influenza anual',desc:'A partir de los 6 meses. En el primer año de vacunación contra flu pueden requerirse 2 dosis.'},
+  {age:'12–15 meses',id:'hib_boost',name:'Hib — refuerzo',desc:'Dosis de refuerzo según producto utilizado.'},
+  {age:'12–15 meses',id:'pcv_boost',name:'Neumocócica conjugada (PCV) — refuerzo',desc:'Dosis de refuerzo.'},
+  {age:'12–15 meses',id:'mmr1',name:'MMR — 1ra dosis',desc:'Sarampión, paperas y rubéola.'},
+  {age:'12–15 meses',id:'var1',name:'Varicela — 1ra dosis',desc:'Primera dosis.'},
+  {age:'12–23 meses',id:'hepa1',name:'Hepatitis A — 1ra dosis',desc:'Serie de 2 dosis, separadas por al menos 6 meses.'},
+];
+
+function loadVac() { try { return JSON.parse(store.get(VAC_KEY)||'{}'); } catch(e) { return {}; } }
+function saveVac(d) { store.set(VAC_KEY, JSON.stringify(d)); }
+
+function renderVac() {
+  const done = loadVac();
+  const applied = Object.values(done).filter(Boolean).length;
+  document.getElementById('vac-pbar').style.width = (applied/VACS.length*100)+'%';
+  document.getElementById('vac-lbl').textContent = applied+' de '+VACS.length+' aplicadas';
+  const groups = {};
+  VACS.forEach(v=>{ if(!groups[v.age]) groups[v.age]=[]; groups[v.age].push(v); });
+  document.getElementById('vac-list').innerHTML = Object.entries(groups).map(([age,vacs])=>`
+    <div class="vac-age">
+      <div class="vac-age-ttl">📅 ${age}</div>
+      ${vacs.map(v=>`
+        <div class="vac-item ${done[v.id]?'done':''}" onclick="toggleVac('${v.id}')">
+          <div class="vac-chk">${done[v.id]?'✓':''}</div>
+          <div><div class="vac-name">${v.name}</div><div class="vac-desc">${v.desc}</div></div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+function toggleVac(id) {
+  const d=loadVac(); d[id]=!d[id]; saveVac(d); renderVac();
+}
+
+// ═══════════════════════════════════════════════════
+// PRIMEROS AUXILIOS
+// ═══════════════════════════════════════════════════
+const PA = [
+  {ic:'😤',bg:'rgba(168,200,216,.2)',title:'Atragantamiento',
+    when:'Si el bebé hace ruidos raros al respirar, no llora ni tose fuerte, o su cara cambia de color.',
+    steps:['Mantén la calma — el bebé siente tu energía. Respira.','Si puede toser o llorar: NO intervengas. La tos es el mejor mecanismo.','Si NO puede toser: colócalo boca abajo sobre tu antebrazo, cabeza más baja que el cuerpo.','Da 5 golpes firmes con la palma en el centro de su espalda (entre los omóplatos).','Si no se despeja: voltéalo boca arriba, 2 dedos en el centro del pecho, 5 compresiones.','Alterna 5 golpes en espalda + 5 compresiones hasta que se despeje o llegue ayuda.'],
+    emrg:'Si pierde el conocimiento o los labios se ponen azules: llama al 911 inmediatamente.'},
+  {ic:'🌡️',bg:'rgba(212,132,90,.15)',title:'Fiebre',
+    when:'Temperatura rectal superior a 38°C (100.4°F). En bebés menores de 3 meses, cualquier fiebre es urgencia.',
+    steps:['Bebés bajo 3 meses con fiebre: llama al médico de inmediato.','Mayores de 3 meses: mide bien la temperatura (rectal es la más precisa).','Quita ropa extra, mantén ambiente fresco pero no frío.','Ofrece más líquidos — lactancia frecuente o agua si ya come sólidos.','Acetaminofén según el peso — consulta la dosis con tu pediatra antes.','Si sube de 39.5°C o dura más de 48h: consulta.'],
+    emrg:'Fiebre + convulsiones, rigidez de nuca, sarpullido con puntos rojos o dificultad para respirar: 911.'},
+  {ic:'😵',bg:'rgba(196,176,216,.2)',title:'Caída / Golpe en la cabeza',
+    when:'Si el bebé cae desde su propia altura o más, especialmente sobre superficie dura.',
+    steps:['Si llora inmediatamente: buena señal — está consciente.','Calma al bebé. No lo sacudas ni mueves bruscamente.','Un chichón es normal — es sangre bajo la piel, no en el cráneo.','Obsévalo 24 horas: ¿come normal, juega, pupilas iguales?','Paracetamol si hay dolor. Hielo envuelto en tela (no directo) en el chichón.','Si durmió justo después: despiértalo a las 2 horas para revisar que responde.'],
+    emrg:'Llama al 911 si: pierde el conocimiento, convulsiona, vomita más de 2 veces, una pupila es más grande que la otra, o llanto inconsolable 30+ min.'},
+  {ic:'🤧',bg:'rgba(139,175,140,.2)',title:'Nariz tapada',
+    when:'Bebés menores de 6 meses solo respiran por la nariz — una congestión puede causarles problemas para comer.',
+    steps:['Aplica 2 gotas de suero fisiológico en cada fosa nasal.','Espera 30 segundos. Usa aspirador nasal (Frida NoseFrida) suavemente.','No uses el aspirador más de 3 veces al día — irrita la mucosa.','Eleva la cabecera del colchón (toalla doblada bajo el colchón, no almohada).','Humidificador de vapor frío en el cuarto ayuda en climas secos.'],
+    emrg:'Llama al médico si: más de 60 respiraciones/min, ruido al respirar, fosas nasales que se abren mucho con cada respiración.'},
+  {ic:'💊',bg:'rgba(212,132,90,.15)',title:'Ingesta accidental',
+    when:'Si el bebé se metió algo a la boca que no era comida — medicamento, planta, producto de limpieza.',
+    steps:['Mantén la calma. Identifica QUÉ se metió y CUÁNTO.','NO induzcas el vómito a menos que te lo indiquen.','Llama a Poison Control: 1-800-222-1222 (EUA).','Ten a la mano: nombre del producto, cantidad, hora, peso del bebé.','Sigue exactamente las instrucciones del operador.'],
+    emrg:'Si está inconsciente, convulsiona o no puede respirar: 911 primero, Poison Control después.'},
+];
+
+function renderPA() {
+  document.getElementById('pa-list').innerHTML = PA.map((item,i)=>`
+    <div class="pa-card">
+      <div class="pa-hdr" onclick="togglePA(${i})" id="pa-h${i}">
+        <div class="pa-hdr-icon" style="background:${item.bg}">${item.ic}</div>
+        <h3>${item.title}</h3>
+        <span class="pa-arrow">▶</span>
+      </div>
+      <div class="pa-body" id="pa-b${i}">
+        <div class="pa-when"><strong>⚡ Cuándo aplica</strong>${item.when}</div>
+        ${item.steps.map((s,j)=>`<div class="pa-step"><span class="pa-num">${j+1}</span><span>${s}</span></div>`).join('')}
+        <div class="pa-emrg"><strong>🚨 Llama al 911 si...</strong>${item.emrg}</div>
+      </div>
+    </div>`).join('');
+}
+
+function togglePA(i) {
+  document.getElementById('pa-h'+i).classList.toggle('open');
+  document.getElementById('pa-b'+i).classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════
+// REGISTRO DIARIO
+// ═══════════════════════════════════════════════════
+const REG_KEY = 'panda_reg_v1';
+let dayOff = 0;
+
+function dk(off) {
+  const d=new Date(); d.setDate(d.getDate()+off);
+  return d.toISOString().split('T')[0];
+}
+function dayLabel(off) {
+  if(off===0) return 'Hoy';
+  if(off===-1) return 'Ayer';
+  const d=new Date(); d.setDate(d.getDate()+off);
+  return d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});
+}
+function daySub(off) {
+  const d=new Date(); d.setDate(d.getDate()+off);
+  return d.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+}
+function loadReg(k) {
+  try { const r=store.get(REG_KEY+'_'+k); return r?JSON.parse(r):{siestas:[],bibis:[],panales:{m:0,s:0},notas:''}; } catch(e) { return {siestas:[],bibis:[],panales:{m:0,s:0},notas:''}; }
+}
+function saveReg(k,d) { store.set(REG_KEY+'_'+k, JSON.stringify(d)); }
+
+function changeDay(delta) {
+  if(dayOff+delta>0) return;
+  dayOff+=delta; renderReg();
+}
+
+function nowTime() {
+  const n=new Date();
+  return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+}
+
+function fmtMin(m) { return m>=60?Math.floor(m/60)+'h '+m%60+'m':m+'m'; }
+
+function renderReg() {
+  const key=dk(dayOff), data=loadReg(key);
+  document.getElementById('d-lbl').textContent=dayLabel(dayOff);
+  document.getElementById('d-sub').textContent=daySub(dayOff);
+  // Siestas
+  const sm=data.siestas.reduce((a,e)=>a+(e.dur||0),0);
+  document.getElementById('s-total').textContent=fmtMin(sm);
+  document.getElementById('s-list').innerHTML = data.siestas.length
+    ? data.siestas.map((e,i)=>`<div class="reg-entry"><div class="reg-etime">${e.hora||'--:--'}</div><div class="reg-edet"><strong>${e.dur} min</strong></div><button class="reg-edel" onclick="delSiesta('${key}',${i})">✕</button></div>`).join('')
+    : '<div class="reg-empty">Sin siestas registradas</div>';
+  // Bibis
+  const bc=data.bibis.length, bml=data.bibis.filter(b=>b.ml).reduce((a,b)=>a+b.ml,0);
+  document.getElementById('b-total').textContent=bc+' toma'+(bc!==1?'s':'');
+  document.getElementById('b-list').innerHTML = data.bibis.length
+    ? data.bibis.map((e,i)=>`<div class="reg-entry"><div class="reg-etime">${e.hora||'--:--'}</div><div class="reg-edet">${e.ml?'<strong>'+e.ml+' ml</strong>':'Lactancia'}</div><button class="reg-edel" onclick="delBibi('${key}',${i})">✕</button></div>`).join('')+(bml>0?`<div style="font-size:11px;color:var(--light);padding:5px 0 2px;font-weight:700">Total: ${bml} ml</div>`:'')
+    : '<div class="reg-empty">Sin tomas registradas</div>';
+  // Pañales
+  document.getElementById('p-moj').textContent=data.panales.m||0;
+  document.getElementById('p-suc').textContent=data.panales.s||0;
+  const pc=(data.panales.m||0)+(data.panales.s||0);
+  document.getElementById('p-total').textContent=pc+' cambio'+(pc!==1?'s':'');
+  // Notas
+  document.getElementById('reg-notas').value=data.notas||'';
+}
+
+function addSiesta() {
+  const hora=document.getElementById('s-hora').value||nowTime();
+  const dur=parseInt(document.getElementById('s-dur').value);
+  if(!dur||dur<1){alert('Ingresa la duración en minutos');return;}
+  const key=dk(dayOff), data=loadReg(key);
+  data.siestas.push({hora,dur});
+  data.siestas.sort((a,b)=>a.hora.localeCompare(b.hora));
+  saveReg(key,data);
+  document.getElementById('s-hora').value='';
+  document.getElementById('s-dur').value='';
+  renderReg();
+}
+
+function delSiesta(key,i) {
+  const d=loadReg(key); d.siestas.splice(i,1); saveReg(key,d); renderReg();
+}
+
+function addBibi() {
+  const hora=document.getElementById('b-hora').value||nowTime();
+  const ml=document.getElementById('b-ml').value?parseInt(document.getElementById('b-ml').value):null;
+  const key=dk(dayOff), data=loadReg(key);
+  data.bibis.push({hora,ml});
+  data.bibis.sort((a,b)=>a.hora.localeCompare(b.hora));
+  saveReg(key,data);
+  document.getElementById('b-hora').value='';
+  document.getElementById('b-ml').value='';
+  renderReg();
+}
+
+function delBibi(key,i) {
+  const d=loadReg(key); d.bibis.splice(i,1); saveReg(key,d); renderReg();
+}
+
+function updPanal(type,delta) {
+  const key=dk(dayOff), data=loadReg(key);
+  data.panales[type]=Math.max(0,(data.panales[type]||0)+delta);
+  saveReg(key,data); renderReg();
+}
+
+function saveNotas() {
+  const key=dk(dayOff), data=loadReg(key);
+  data.notas=document.getElementById('reg-notas').value;
+  saveReg(key,data);
+}
+
+// ═══════════════════════════════════════════════════
+// CRECIMIENTO
+// ═══════════════════════════════════════════════════
+const CREC_KEY = 'panda_crec_v1';
+function loadCrec() { try { return JSON.parse(store.get(CREC_KEY)||'[]'); } catch(e) { return []; } }
+function saveCrec(d) { store.set(CREC_KEY, JSON.stringify(d)); }
+
+function renderCrec() {
+  const data=loadCrec();
+  document.getElementById('crec-list').innerHTML = data.length
+    ? data.map((e,i)=>`<div class="crec-entry"><div class="crec-date">${e.fecha}</div><div class="crec-vals">${e.peso?'⚖️ <strong>'+e.peso+' kg</strong>':''} ${e.talla?'📏 <strong>'+e.talla+' cm</strong>':''} ${e.pc?'🔵 PC: <strong>'+e.pc+' cm</strong>':''}</div><button class="crec-del" onclick="delCrec(${i})">✕</button></div>`).join('')
+    : '<div class="reg-empty">Sin registros de crecimiento aún</div>';
+}
+
+function addCrec() {
+  const fecha=document.getElementById('c-fecha').value;
+  const peso=parseFloat(document.getElementById('c-peso').value)||null;
+  const talla=parseFloat(document.getElementById('c-talla').value)||null;
+  const pc=parseFloat(document.getElementById('c-pc').value)||null;
+  if(!fecha){alert('Selecciona una fecha');return;}
+  if(!peso&&!talla&&!pc){alert('Ingresa al menos un dato');return;}
+  const data=loadCrec();
+  data.push({fecha,peso,talla,pc});
+  data.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  saveCrec(data);
+  document.getElementById('c-fecha').value='';
+  document.getElementById('c-peso').value='';
+  document.getElementById('c-talla').value='';
+  document.getElementById('c-pc').value='';
+  renderCrec();
+}
+
+function delCrec(i) {
+  const d=loadCrec(); d.splice(i,1); saveCrec(d); renderCrec();
+}
+
+// ═══════════════════════════════════════════════════
+// REPORTE PDF — RANGO DE FECHAS
+// ═══════════════════════════════════════════════════
+function showExportPicker() {
+  const ov=document.createElement('div');
+  ov.className='overlay'; ov.id='exp-ov';
+  const today=new Date().toISOString().split('T')[0];
+  const from=new Date(); from.setDate(from.getDate()-30);
+  const fromStr=from.toISOString().split('T')[0];
+  ov.innerHTML=`
+    <div class="overlay-box">
+      <div style="font-size:28px;text-align:center;margin-bottom:10px">📄</div>
+      <div class="ov-title">Reporte para pediatra</div>
+      <div class="ov-sub">Selecciona el período a incluir</div>
+      <label style="font-size:11px;font-weight:800;color:var(--mid);display:block;margin-bottom:4px">Desde</label>
+      <input type="date" id="exp-from" class="ov-input" value="${fromStr}">
+      <label style="font-size:11px;font-weight:800;color:var(--mid);display:block;margin-bottom:4px">Hasta</label>
+      <input type="date" id="exp-to" class="ov-input" value="${today}">
+      <button class="ov-btn" onclick="genReport()">Generar reporte 📊</button>
+      <button class="ov-skip" onclick="closeOv('exp-ov')">Cancelar</button>
+    </div>`;
+  ov.addEventListener('click', e=>{ if(e.target===ov) closeOv('exp-ov'); });
+  document.body.appendChild(ov);
+}
+
+function genReport() {
+  const fromStr=document.getElementById('exp-from').value;
+  const toStr=document.getElementById('exp-to').value;
+  if(!fromStr||!toStr){alert('Selecciona ambas fechas');return;}
+  closeOv('exp-ov');
+
+  const baby=getBabyName();
+  const fromD=new Date(fromStr+'T00:00:00');
+  const toD=new Date(toStr+'T00:00:00');
+  const days=[]; const cur=new Date(fromD);
+  while(cur<=toD){
+    const k=cur.toISOString().split('T')[0];
+    let d=null; try{const r=store.get(REG_KEY+'_'+k); d=r?JSON.parse(r):null;}catch(e){}
+    days.push({k,date:new Date(cur),data:d});
+    cur.setDate(cur.getDate()+1);
+  }
+  const wd=days.filter(d=>d.data);
+  const avg=arr=>arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+  const sm=wd.map(d=>d.data.siestas.reduce((a,e)=>a+(e.dur||0),0));
+  const fc=wd.map(d=>d.data.bibis.length);
+  const ml=wd.map(d=>d.data.bibis.filter(b=>b.ml).reduce((a,b)=>a+b.ml,0));
+  const dc=wd.map(d=>(d.data.panales.m||0)+(d.data.panales.s||0));
+  const wc=wd.map(d=>d.data.panales.m||0);
+  const sc=wd.map(d=>d.data.panales.s||0);
+
+  function findExt(arr,wd,fn){
+    if(!arr.length) return null;
+    const val=fn.apply(null,arr); const i=arr.indexOf(val); return wd[i]||null;
+  }
+  const fmtD=d=>d.date.toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'});
+  const fmtM=m=>m>=60?Math.floor(m/60)+'h '+m%60+'m':m+'m';
+  const maxSD=findExt(sm,wd,Math.max), minSD=findExt(sm,wd,Math.min);
+  const maxFD=findExt(fc,wd,Math.max), minFD=findExt(fc,wd,Math.min);
+  const maxDD=findExt(dc,wd,Math.max), minDD=findExt(dc,wd,Math.min);
+  const crecData=loadCrec();
+
+  const dailyRows=wd.map(d=>{
+    const s=d.data.siestas.reduce((a,e)=>a+(e.dur||0),0);
+    const f=d.data.bibis.length;
+    const m=d.data.bibis.filter(b=>b.ml).reduce((a,b)=>a+b.ml,0);
+    const p=(d.data.panales.m||0)+(d.data.panales.s||0);
+    const n=d.data.notas?d.data.notas.replace(/</g,'&lt;').substring(0,55)+(d.data.notas.length>55?'…':''):'—';
+    return `<tr><td>${fmtD(d)}</td><td style="text-align:center">${fmtM(s)}</td><td style="text-align:center">${f}${m>0?'<br><small>'+m+'ml</small>':''}</td><td style="text-align:center">${d.data.panales.m||0}/${d.data.panales.s||0}</td><td style="font-size:11px;color:#8C6550">${n}</td></tr>`;
+  }).join('')||'<tr><td colspan="5" style="text-align:center;color:#8C6550;font-style:italic">Sin registros en este período</td></tr>';
+
+  const crecRows=crecData.length?crecData.map(e=>`<tr><td>${e.fecha}</td><td style="text-align:center">${e.peso?e.peso+' kg':'—'}</td><td style="text-align:center">${e.talla?e.talla+' cm':'—'}</td><td style="text-align:center">${e.pc?e.pc+' cm':'—'}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;color:#8C6550;font-style:italic">Sin registros</td></tr>';
+
+  const extRow=(ic,lbl,mxD,mxV,mnD,mnV)=>mxD?`<tr><td>${ic} ${lbl}</td><td style="color:#5A7D5C">📈 ${fmtD(mxD)} — <strong>${mxV}</strong></td><td style="color:#D45A5A">📉 ${fmtD(mnD)} — <strong>${mnV}</strong></td></tr>`:'';
+
+  const fromLbl=fromD.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+  const toLbl=toD.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Reporte ${baby}</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Roboto,sans-serif;background:#FFF8F0;color:#2D1B0E;padding:24px;max-width:700px;margin:0 auto}
+.hdr{background:linear-gradient(135deg,#2D1B0E,#5C3D2A);border-radius:14px;padding:22px;color:white;margin-bottom:20px}
+.hdr .br{font-size:10px;letter-spacing:2px;opacity:.6;text-transform:uppercase;margin-bottom:6px}
+.hdr .baby{font-size:26px;font-weight:800;color:#F2C4A0}
+.hdr .per{font-size:12px;opacity:.7;margin-top:3px}
+.sec{background:white;border-radius:12px;padding:18px;margin-bottom:16px;border:1.5px solid #F5E6D0}
+.sec h2{font-size:15px;font-weight:800;margin-bottom:12px;padding-bottom:7px;border-bottom:2px solid #F5E6D0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc{background:#FFF8F0;border-radius:10px;padding:12px;text-align:center;border:1px solid #F5E6D0}
+.sv{font-size:20px;font-weight:800;color:#2D1B0E;line-height:1.1}
+.sl{font-size:10px;color:#8C6550;font-weight:700;margin-top:3px}
+.ss{font-size:9px;color:#A8855A;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#F5E6D0;padding:7px 9px;text-align:left;font-weight:800;color:#5C3D2A;font-size:11px}
+td{padding:7px 9px;border-bottom:1px solid #F5E6D0;color:#5C3D2A;vertical-align:top}
+.ft{text-align:center;font-size:10px;color:#8C6550;margin-top:20px;padding-top:10px;border-top:1px solid #F5E6D0}
+@media print{body{background:white;padding:14px}.sec{break-inside:avoid}}
+
+/* ── DARK MODE — respeta el sistema del usuario ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Fondos: café oscuro profundo, mantiene calidez PandA */
+    --cream:      #1C1208;
+    --warm-white: #231608;
+    --sand:       #2E1E0E;
+
+    /* Texto: invertido, cálido */
+    --dark:       #F5E6D0;
+    --mid:        #D4B090;
+    --light:      #9A7A60;
+
+    /* Sombras más sutiles en dark */
+    --shadow:     rgba(0,0,0,0.35);
+
+    /* Accentos — ligeramente más brillantes para contraste */
+    --peach:      #F5C9A8;
+    --terra:      #E08E64;
+    --deep-terra: #C07048;
+
+    /* Verdes — igual de vibrantes */
+    --sage:       #9ABF9C;
+    --deep-sage:  #6A8F6C;
+
+    /* Azules — igual */
+    --sky:        #B8D8E8;
+    --deep-sky:   #6A9FB8;
+
+    /* Lavanda — igual */
+    --lavender:   #D4C0E8;
+
+    /* Blanco puro se mantiene para textos sobre fondos de color */
+    --white:      #fff;
+  }
+
+  /* Ajustes específicos que no usan variables */
+  .hero {
+    background: linear-gradient(145deg, #0D0804 0%, #1C1208 50%, #2A3A2A 100%);
+  }
+  .stage-hdr[style*="A85F3A"] {
+    filter: brightness(0.85);
+  }
+  .vac-intro,
+  .reg-intro {
+    filter: brightness(0.9);
+  }
+  .tip-box {
+    background: rgba(139,175,140,0.08);
+  }
+  .warn-box {
+    background: rgba(220,80,60,0.08);
+  }
+  .pa-calm {
+    background: linear-gradient(135deg,rgba(139,175,140,.1),rgba(168,200,216,.08));
+  }
+
+  /* Inputs y controles */
+  .reg-input {
+    background: #2E1E0E;
+    color: #F5E6D0;
+    border-color: #3E2E1E;
+  }
+  .reg-input:focus {
+    border-color: var(--peach);
+  }
+
+  /* Overlay */
+  .overlay-box {
+    background: #231608;
+  }
+  .ov-input {
+    background: #2E1E0E;
+    color: #F5E6D0;
+    border-color: #3E2E1E;
+  }
+
+  /* Nav */
+  .nav-wrap {
+    background: #1C1208;
+    border-bottom-color: #2E1E0E;
+  }
+
+  /* Cards */
+  .card,
+  .ej-card,
+  .vac-item,
+  .pa-card,
+  .reg-sec,
+  .cl-item,
+  .date-nav {
+    background: #231608;
+    border-color: #2E1E0E;
+  }
+  .vac-item:active {
+    background: #2E1E0E;
+  }
+
+  /* Sched */
+  .sched-act {
+    background: #2E1E0E;
+  }
+
+  /* Signal cards */
+  .sig-card,
+  .pc-box {
+    background: #2E1E0E;
+  }
+
+  /* Checklist */
+  .cl-item.done {
+    background: rgba(139,175,140,0.08);
+  }
+
+  /* Footer */
+  .footer {
+    border-top-color: #2E1E0E;
+  }
+
+  /* Disclaimer */
+  .disclaimer-card {
+    background: #231608;
+    border-color: #2E1E0E;
+  }
+
+  /* Top button */
+  .top-btn {
+    background: var(--terra);
+  }
+
+  /* Scrollbar (Chrome/Edge) */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1C1208; }
+  ::-webkit-scrollbar-thumb { background: #3E2E1E; border-radius: 3px; }
+}
+
+</style></head><body>
+<div class="hdr"><div class="br">Reporte médico · Guía PandA</div><div class="baby">${baby}</div><div class="per">Del ${fromLbl} al ${toLbl} · ${wd.length} días con registro de ${days.length} totales</div></div>
+<div class="sec"><h2>📊 Promedios del período</h2><div class="stats">
+<div class="sc"><div class="sv">😴 ${fmtM(Math.round(avg(sm)))}</div><div class="sl">Sueño / día</div></div>
+<div class="sc"><div class="sv">🍼 ${avg(fc).toFixed(1)}</div><div class="sl">Tomas / día</div>${avg(ml.filter(m=>m>0))>0?'<div class="ss">'+Math.round(avg(ml.filter(m=>m>0)))+' ml prom.</div>':''}</div>
+<div class="sc"><div class="sv">🧷 ${avg(dc).toFixed(1)}</div><div class="sl">Pañales / día</div><div class="ss">💧${avg(wc).toFixed(1)} / 💩${avg(sc).toFixed(1)}</div></div>
+</div></div>
+<div class="sec"><h2>📈 Días destacados</h2><p style="font-size:11px;color:#8C6550;margin-bottom:10px">Los días de menos pueden coincidir con inicio de enfermedad, vacuna o cambio de rutina.</p>
+<table><tr><th>Indicador</th><th style="color:#5A7D5C">Día con más</th><th style="color:#D45A5A">Día con menos</th></tr>
+${extRow('😴','Sueño',maxSD,fmtM(sm.length?Math.max(...sm):0),minSD,fmtM(sm.length?Math.min(...sm):0))}
+${extRow('🍼','Tomas',maxFD,fc.length?Math.max(...fc)+' tomas':'—',minFD,fc.length?Math.min(...fc)+' tomas':'—')}
+${extRow('🧷','Pañales',maxDD,dc.length?Math.max(...dc)+' cambios':'—',minDD,dc.length?Math.min(...dc)+' cambios':'—')}
+</table></div>
+<div class="sec"><h2>📏 Registro de crecimiento</h2><table><tr><th>Fecha</th><th>Peso</th><th>Talla</th><th>P. Cefálico</th></tr>${crecRows}</table></div>
+<div class="sec"><h2>📅 Bitácora día a día</h2><table><tr><th>Fecha</th><th>Sueño</th><th>Tomas</th><th>Pañales M/S</th><th>Nota</th></tr>${dailyRows}</table></div>
+<div class="ft">Generado con Guía PandA · baby products & care · ${new Date().toLocaleString('es-MX')}<br>Este reporte es un registro de seguimiento parental, no un diagnóstico médico.</div>
+<scr"+"ipt>window.onload=()=>window.print();</scr"+"ipt>
+</body></html>`;
+
+  try{
+    const blob=new Blob([html],{type:'text/html'});
+    const url=URL.createObjectURL(blob);
+    const win=window.open(url,'_blank');
+    if(!win){ const a=document.createElement('a'); a.href=url; a.download='reporte-'+baby+'-'+fromStr+'.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
+  }catch(err){alert('Error: '+err.message);}
+}
+
+// ═══════════════════════════════════════════════════
+// BACK TO TOP
+// ═══════════════════════════════════════════════════
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('topBtn');
+  if(!btn) return;
+  btn.classList.toggle('show', window.scrollY > 420);
+});
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+applyName(getBabyName());
+renderChecklist();
+renderEj('all');
+
+// Show name editor on first visit
+if(store.ok() && !store.get(NAME_KEY)) {
+  setTimeout(showNameEditor, 900);
+}
+</script>
+
+</body>
+</html>
