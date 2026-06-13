@@ -1,10 +1,15 @@
-// Losprimeros12 — PandA · Service Worker v2
-const CACHE = 'primeros12-v2';
+// Losprimeros12 — PandA · Service Worker v3
+const CACHE = 'primeros12-v3';
 const ASSETS = [
+  './',
   './index.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',
+  './favicon.ico',
+  './favicon.svg',
+  './favicon-96x96.png',
+  './apple-touch-icon.png'
 ];
 
 // Install — pre-cache core assets
