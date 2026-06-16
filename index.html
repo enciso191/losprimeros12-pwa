@@ -139,6 +139,47 @@ body{
 .vac-name{font-size:13px;font-weight:800;color:var(--dark)}
 .vac-item.done .vac-name{text-decoration:line-through;color:var(--light)}
 .vac-desc{font-size:11px;color:var(--light);margin-top:2px;line-height:1.4}
+/* ── VACUNAS v2 ── */
+.vac-aviso{display:flex;gap:10px;background:rgba(168,200,216,.15);border-left:4px solid var(--sky);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:14px;font-size:12px;color:var(--mid);line-height:1.6}
+.vac-aviso-ico{flex-shrink:0;font-size:16px}
+.vac-country-bar{display:flex;align-items:center;justify-content:space-between;background:var(--sand);border-radius:11px;padding:9px 13px;margin-bottom:14px;font-size:13px;font-weight:700;color:var(--dark)}
+.vac-change-pais{background:none;border:none;font-family:'Nunito',sans-serif;font-size:12px;color:var(--deep-sky);font-weight:700;cursor:pointer;text-decoration:underline;padding:0;touch-action:manipulation}
+.vac-selector-pais{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:16px;padding:28px 20px;text-align:center;margin:14px 0}
+.vac-sel-ttl{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:var(--dark);margin-bottom:7px}
+.vac-sel-sub{font-size:13px;color:var(--light);margin-bottom:22px;line-height:1.5}
+.vac-sel-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.vac-country-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--cream);border:2px solid var(--sand);border-radius:14px;padding:18px 22px;cursor:pointer;touch-action:manipulation;min-width:130px;font-family:'Nunito',sans-serif}
+.vac-country-btn:active{border-color:var(--terra);background:rgba(212,132,90,.08)}
+.vac-cb-flag{font-size:36px}
+.vac-cb-name{font-size:15px;font-weight:800;color:var(--dark)}
+.vac-cb-sub{font-size:10px;color:var(--light);font-weight:600}
+.vac-card{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:12px;padding:13px 14px;margin-bottom:8px}
+.vac-card-top{display:flex;align-items:flex-start;gap:11px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(139,175,140,.2)}
+.vac-card-done{background:rgba(139,175,140,.1);border-color:var(--sage)}
+.vac-chk-empty{width:22px;height:22px;border-radius:5px;border:2.5px solid var(--peach);flex-shrink:0;margin-top:1px}
+.vac-chk-done{width:22px;height:22px;border-radius:5px;background:var(--sage);border:2.5px solid var(--sage);display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;margin-top:1px}
+.vac-card-info{flex:1;min-width:0}
+.vac-card-nombre{font-size:13px;font-weight:800;color:var(--dark);line-height:1.3}
+.vac-card-nombre.done{text-decoration:line-through;color:var(--light)}
+.vac-card-edad{font-size:11px;color:var(--terra);font-weight:700;margin-top:3px}
+.vac-card-previene{font-size:11px;color:var(--light);margin-top:2px;line-height:1.4}
+.vac-applied-row{display:flex;align-items:center;gap:9px;margin-top:9px;padding-top:8px;border-top:1px dashed var(--sand)}
+.vac-applied-badge{font-size:12px;font-weight:700;color:var(--deep-sage);flex:1}
+.vac-edit-btn{background:none;border:1.5px solid var(--sage);border-radius:8px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--deep-sage);padding:4px 10px;cursor:pointer;touch-action:manipulation;flex-shrink:0}
+.vac-date-row{margin-top:9px;padding-top:8px;border-top:1px dashed var(--sand)}
+.vac-date-lbl{font-size:11px;font-weight:700;color:var(--mid);display:block;margin-bottom:7px}
+.vac-date-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.vac-date-input{border:1.5px solid var(--peach);border-radius:9px;padding:7px 10px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--dark);background:var(--cream);outline:none;flex:1;min-width:140px}
+.vac-date-input:focus{border-color:var(--terra)}
+.vac-date-confirm{background:var(--sage);color:white;border:none;border-radius:9px;padding:7px 14px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation;flex-shrink:0}
+.vac-date-cancel{background:none;border:1.5px solid var(--sand);border-radius:9px;padding:7px 10px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--light);cursor:pointer;touch-action:manipulation;flex-shrink:0}
+.vac-custom-tag{display:inline-block;background:rgba(196,176,216,.3);color:var(--lavender);font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:5px;margin-top:4px}
+.vac-del-btn{background:none;border:none;font-size:16px;color:var(--light);cursor:pointer;touch-action:manipulation;flex-shrink:0;padding:0 2px;line-height:1}
+.vac-del-btn:active{color:#D45A5A}
+.vac-add-btn{width:100%;background:none;border:2px dashed var(--sand);border-radius:12px;padding:13px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--light);cursor:pointer;touch-action:manipulation;margin-top:8px;margin-bottom:20px}
+.vac-add-btn:active{background:var(--sand);color:var(--dark)}
+.vac-modal-box{max-height:90vh;overflow-y:auto}
+.vac-notas-area{resize:none;height:70px;display:block}
 /* ── PRIMEROS AUXILIOS ── */
 .pa-calm{background:linear-gradient(135deg,rgba(139,175,140,.2),rgba(168,200,216,.15));border:1.5px solid var(--sage);border-radius:14px;padding:20px 16px;margin-bottom:18px;text-align:center}
 .pa-calm .pa-e{font-size:38px;display:block;margin-bottom:9px}
@@ -356,6 +397,16 @@ body{
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #1C1208; }
   ::-webkit-scrollbar-thumb { background: #3E2E1E; border-radius: 3px; }
+
+  /* Vacunas v2 */
+  .vac-card,
+  .vac-selector-pais { background: #231608; border-color: #2E1E0E; }
+  .vac-card-done { background: rgba(139,175,140,0.08); border-color: var(--sage); }
+  .vac-country-btn { background: #2E1E0E; border-color: #3E2E1E; }
+  .vac-country-btn:active { background: rgba(212,132,90,0.08); }
+  .vac-country-bar { background: #2E1E0E; }
+  .vac-date-input { background: #2E1E0E; color: #F5E6D0; border-color: var(--peach); }
+  .vac-add-btn { border-color: #3E2E1E; }
 }
 
 </style>
@@ -669,14 +720,7 @@ body{
 
 <!-- ═══ VACUNAS ═══ -->
 <div class="stage" id="vac">
-  <div class="vac-intro">
-    <h2>💉 Esquema de vacunación</h2>
-    <p>Referencia general para bebés en Estados Unidos. Toca cada vacuna al aplicarla y confirma fechas exactas con tu pediatra.</p>
-  </div>
-  <div class="source-note" style="margin-bottom:14px">Basado en el calendario de inmunización infantil del CDC. Algunas vacunas dependen de edad, producto usado, temporada, historial médico y disponibilidad. No retrases ni adelantes vacunas sin indicación médica.</div>
-  <div class="pbar-wrap"><div class="pbar" id="vac-pbar"></div></div>
-  <div class="pbar-lbl" id="vac-lbl">0 de 0 aplicadas</div>
-  <div id="vac-list"></div>
+  <div id="vac-section"></div>
 </div>
 
 <!-- ═══ PRIMEROS AUXILIOS ═══ -->
@@ -946,59 +990,252 @@ function filterEj(f, btn) {
 }
 
 // ═══════════════════════════════════════════════════
-// VACUNAS
+// VACUNAS v2
 // ═══════════════════════════════════════════════════
-const VAC_KEY = 'panda_vac_v1';
-const VACS = [
-  {age:'Al nacer',id:'hepb0',name:'Hepatitis B (HepB) — 1ra dosis',desc:'Usualmente se aplica al nacimiento en Estados Unidos.'},
-  {age:'1–2 meses',id:'hepb1',name:'Hepatitis B (HepB) — 2da dosis',desc:'Segunda dosis según indicación del pediatra.'},
-  {age:'2 meses',id:'rv1',name:'Rotavirus (RV) — 1ra dosis',desc:'Vacuna oral. El número total de dosis depende de la marca usada.'},
-  {age:'2 meses',id:'dtap1',name:'DTaP — 1ra dosis',desc:'Difteria, tétanos y tos ferina.'},
-  {age:'2 meses',id:'hib1',name:'Hib — 1ra dosis',desc:'Haemophilus influenzae tipo b.'},
-  {age:'2 meses',id:'pcv1',name:'Neumocócica conjugada (PCV) — 1ra dosis',desc:'Protege contra enfermedad neumocócica.'},
-  {age:'2 meses',id:'ipv1',name:'Polio inactivada (IPV) — 1ra dosis',desc:'En Estados Unidos se usa IPV inyectable, no polio oral de rutina.'},
-  {age:'4 meses',id:'rv2',name:'Rotavirus (RV) — 2da dosis',desc:'Segunda dosis oral.'},
-  {age:'4 meses',id:'dtap2',name:'DTaP — 2da dosis',desc:'Segunda dosis.'},
-  {age:'4 meses',id:'hib2',name:'Hib — 2da dosis',desc:'Segunda dosis.'},
-  {age:'4 meses',id:'pcv2',name:'Neumocócica conjugada (PCV) — 2da dosis',desc:'Segunda dosis.'},
-  {age:'4 meses',id:'ipv2',name:'Polio inactivada (IPV) — 2da dosis',desc:'Segunda dosis.'},
-  {age:'6 meses',id:'rv3',name:'Rotavirus (RV) — posible 3ra dosis',desc:'Solo algunas marcas requieren tercera dosis. Confirma con el pediatra.'},
-  {age:'6 meses',id:'dtap3',name:'DTaP — 3ra dosis',desc:'Tercera dosis de la serie primaria.'},
-  {age:'6 meses',id:'hib3',name:'Hib — posible 3ra dosis',desc:'Depende de la marca/esquema utilizado.'},
-  {age:'6 meses',id:'pcv3',name:'Neumocócica conjugada (PCV) — 3ra dosis',desc:'Tercera dosis.'},
-  {age:'6–18 meses',id:'hepb2',name:'Hepatitis B (HepB) — 3ra dosis',desc:'La tercera dosis se aplica dentro de esta ventana, según el esquema.'},
-  {age:'6–18 meses',id:'ipv3',name:'Polio inactivada (IPV) — 3ra dosis',desc:'Tercera dosis dentro de esta ventana.'},
-  {age:'6 meses en adelante',id:'flu1',name:'Influenza anual',desc:'A partir de los 6 meses. En el primer año de vacunación contra flu pueden requerirse 2 dosis.'},
-  {age:'12–15 meses',id:'hib_boost',name:'Hib — refuerzo',desc:'Dosis de refuerzo según producto utilizado.'},
-  {age:'12–15 meses',id:'pcv_boost',name:'Neumocócica conjugada (PCV) — refuerzo',desc:'Dosis de refuerzo.'},
-  {age:'12–15 meses',id:'mmr1',name:'MMR — 1ra dosis',desc:'Sarampión, paperas y rubéola.'},
-  {age:'12–15 meses',id:'var1',name:'Varicela — 1ra dosis',desc:'Primera dosis.'},
-  {age:'12–23 meses',id:'hepa1',name:'Hepatitis A — 1ra dosis',desc:'Serie de 2 dosis, separadas por al menos 6 meses.'},
-];
+const VAC_PAIS_KEY   = 'vacunas_pais';
+const VAC_ESTADO_KEY = 'vacunas_estado';
+const VAC_CUSTOM_KEY = 'vacunas_custom';
+const VAC_KEY_LEGACY = 'panda_vac_v1';
 
-function loadVac() { try { return JSON.parse(store.get(VAC_KEY)||'{}'); } catch(e) { return {}; } }
-function saveVac(d) { store.set(VAC_KEY, JSON.stringify(d)); }
-
-function renderVac() {
-  const done = loadVac();
-  const applied = Object.values(done).filter(Boolean).length;
-  document.getElementById('vac-pbar').style.width = (applied/VACS.length*100)+'%';
-  document.getElementById('vac-lbl').textContent = applied+' de '+VACS.length+' aplicadas';
-  const groups = {};
-  VACS.forEach(v=>{ if(!groups[v.age]) groups[v.age]=[]; groups[v.age].push(v); });
-  document.getElementById('vac-list').innerHTML = Object.entries(groups).map(([age,vacs])=>`
-    <div class="vac-age">
-      <div class="vac-age-ttl">📅 ${age}</div>
-      ${vacs.map(v=>`
-        <div class="vac-item ${done[v.id]?'done':''}" onclick="toggleVac('${v.id}')">
-          <div class="vac-chk">${done[v.id]?'✓':''}</div>
-          <div><div class="vac-name">${v.name}</div><div class="vac-desc">${v.desc}</div></div>
-        </div>`).join('')}
-    </div>`).join('');
+function migrarVacunas() {
+  try {
+    const legacy = store.get(VAC_KEY_LEGACY);
+    if (!legacy) return;
+    const old = JSON.parse(legacy);
+    const nuevo = {};
+    Object.keys(old).forEach(id => { if (old[id]) nuevo[id] = { aplicada: true, fecha: null }; });
+    store.set(VAC_ESTADO_KEY, JSON.stringify(nuevo));
+    store.del(VAC_KEY_LEGACY);
+  } catch(e) {}
 }
 
-function toggleVac(id) {
-  const d=loadVac(); d[id]=!d[id]; saveVac(d); renderVac();
+const VACUNAS_MX = [
+  { id:'bcg',    nombre:'BCG',                                    edad:'Al nacer',  previene:'Tuberculosis' },
+  { id:'hepb1',  nombre:'Hepatitis B',                            edad:'Al nacer',  previene:'Hepatitis B', dosis:'1ª dosis' },
+  { id:'penta1', nombre:'Pentavalente acelular (DPaT+VPI+Hib)',   edad:'2 meses',   previene:'Difteria, Tos ferina, Tétanos, Polio, H. influenzae b', dosis:'1ª dosis' },
+  { id:'rota1',  nombre:'Rotavirus',                              edad:'2 meses',   previene:'Diarrea por Rotavirus', dosis:'1ª dosis' },
+  { id:'neum1',  nombre:'Neumocócica conjugada',                  edad:'2 meses',   previene:'Infecciones por Neumococo', dosis:'1ª dosis' },
+  { id:'penta2', nombre:'Pentavalente acelular (DPaT+VPI+Hib)',   edad:'4 meses',   previene:'Difteria, Tos ferina, Tétanos, Polio, H. influenzae b', dosis:'2ª dosis' },
+  { id:'rota2',  nombre:'Rotavirus',                              edad:'4 meses',   previene:'Diarrea por Rotavirus', dosis:'2ª dosis' },
+  { id:'penta3', nombre:'Pentavalente acelular (DPaT+VPI+Hib)',   edad:'6 meses',   previene:'Difteria, Tos ferina, Tétanos, Polio, H. influenzae b', dosis:'3ª dosis' },
+  { id:'hepb3',  nombre:'Hepatitis B',                            edad:'6 meses',   previene:'Hepatitis B', dosis:'3ª dosis' },
+  { id:'flu1',   nombre:'Influenza',                              edad:'6 meses',   previene:'Influenza', dosis:'1ª dosis (1er semestre)' },
+  { id:'flu2',   nombre:'Influenza',                              edad:'7 meses',   previene:'Influenza', dosis:'2ª dosis (2º semestre)' },
+  { id:'neum2',  nombre:'Neumocócica conjugada',                  edad:'12 meses',  previene:'Infecciones por Neumococo', dosis:'Refuerzo' },
+  { id:'srp',    nombre:'SRP (Triple viral)',                      edad:'12 meses',  previene:'Sarampión, Rubéola y Parotiditis', dosis:'1ª dosis' },
+];
+
+const VACUNAS_US = [
+  { id:'hepb1_us',  nombre:'Hepatitis B',    edad:'Al nacer',           previene:'Hepatitis B',                   dosis:'1ª dosis' },
+  { id:'hepb2_us',  nombre:'Hepatitis B',    edad:'1-2 meses',          previene:'Hepatitis B',                   dosis:'2ª dosis' },
+  { id:'rotav1_us', nombre:'Rotavirus (RV)', edad:'2 meses',            previene:'Rotavirus',                     dosis:'1ª dosis' },
+  { id:'dtap1_us',  nombre:'DTaP',           edad:'2 meses',            previene:'Difteria, Tétanos, Tos ferina', dosis:'1ª dosis' },
+  { id:'hib1_us',   nombre:'Hib',            edad:'2 meses',            previene:'H. influenzae tipo b',          dosis:'1ª dosis' },
+  { id:'pcv1_us',   nombre:'PCV15/PCV20',    edad:'2 meses',            previene:'Neumococo',                     dosis:'1ª dosis' },
+  { id:'ipv1_us',   nombre:'IPV (Polio)',    edad:'2 meses',            previene:'Poliomielitis',                 dosis:'1ª dosis' },
+  { id:'rotav2_us', nombre:'Rotavirus (RV)', edad:'4 meses',            previene:'Rotavirus',                     dosis:'2ª dosis' },
+  { id:'dtap2_us',  nombre:'DTaP',           edad:'4 meses',            previene:'Difteria, Tétanos, Tos ferina', dosis:'2ª dosis' },
+  { id:'hib2_us',   nombre:'Hib',            edad:'4 meses',            previene:'H. influenzae tipo b',          dosis:'2ª dosis' },
+  { id:'pcv2_us',   nombre:'PCV15/PCV20',    edad:'4 meses',            previene:'Neumococo',                     dosis:'2ª dosis' },
+  { id:'ipv2_us',   nombre:'IPV (Polio)',    edad:'4 meses',            previene:'Poliomielitis',                 dosis:'2ª dosis' },
+  { id:'rotav3_us', nombre:'Rotavirus (RV)', edad:'6 meses',            previene:'Rotavirus',                     dosis:'3ª dosis (si aplica)' },
+  { id:'dtap3_us',  nombre:'DTaP',           edad:'6 meses',            previene:'Difteria, Tétanos, Tos ferina', dosis:'3ª dosis' },
+  { id:'hib3_us',   nombre:'Hib',            edad:'6 meses',            previene:'H. influenzae tipo b',          dosis:'3ª dosis' },
+  { id:'pcv3_us',   nombre:'PCV15/PCV20',    edad:'6 meses',            previene:'Neumococo',                     dosis:'3ª dosis' },
+  { id:'hepb3_us',  nombre:'Hepatitis B',    edad:'6-18 meses',         previene:'Hepatitis B',                   dosis:'3ª dosis' },
+  { id:'ipv3_us',   nombre:'IPV (Polio)',    edad:'6-18 meses',         previene:'Poliomielitis',                 dosis:'3ª dosis' },
+  { id:'flu_us',    nombre:'Influenza',      edad:'6 meses en adelante',previene:'Influenza',                     dosis:'Anual' },
+  { id:'mmr_us',    nombre:'MMR',            edad:'12-15 meses',        previene:'Sarampión, Paperas, Rubéola',   dosis:'1ª dosis' },
+  { id:'var_us',    nombre:'Varicela (VAR)', edad:'12-15 meses',        previene:'Varicela',                      dosis:'1ª dosis' },
+  { id:'hepa_us',   nombre:'Hepatitis A',    edad:'12-23 meses',        previene:'Hepatitis A',                   dosis:'1ª dosis' },
+];
+
+function loadVacEstado() { try { return JSON.parse(store.get(VAC_ESTADO_KEY)||'{}'); } catch(e) { return {}; } }
+function saveVacEstado(d) { store.set(VAC_ESTADO_KEY, JSON.stringify(d)); }
+function loadVacCustom()  { try { return JSON.parse(store.get(VAC_CUSTOM_KEY)||'[]'); } catch(e) { return []; } }
+function saveVacCustom(a) { store.set(VAC_CUSTOM_KEY, JSON.stringify(a)); }
+
+function fmtFechaVac(iso) {
+  if (!iso) return 'fecha no registrada';
+  try {
+    const [y,m,d] = iso.split('-');
+    const ms = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    return parseInt(d)+' '+ms[parseInt(m)-1]+' '+y;
+  } catch(e) { return iso; }
+}
+
+function renderVacCard(v, est) {
+  const aplicada = est && est.aplicada;
+  const nom = v.dosis ? v.nombre+' — '+v.dosis : v.nombre;
+  const del = v.esCustom ? `<button class="vac-del-btn" onclick="eliminarVacCustom('${v.id}',event)" title="Eliminar">✕</button>` : '';
+  if (aplicada) {
+    return `<div class="vac-card vac-card-done" id="vcard-${v.id}">
+      <div class="vac-card-top">
+        <div class="vac-chk-done">✓</div>
+        <div class="vac-card-info">
+          <div class="vac-card-nombre done">${nom}</div>
+          <div class="vac-card-edad">${v.edad}</div>
+          <div class="vac-card-previene">${v.previene||''}</div>
+        </div>${del}
+      </div>
+      <div class="vac-applied-row">
+        <span class="vac-applied-badge">✓ Aplicada el ${fmtFechaVac(est.fecha)}</span>
+        <button class="vac-edit-btn" onclick="editarFechaVac('${v.id}',event)">Editar fecha</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="vac-card" id="vcard-${v.id}">
+    <div class="vac-card-top" onclick="activarFechaVac('${v.id}')">
+      <div class="vac-chk-empty"></div>
+      <div class="vac-card-info">
+        <div class="vac-card-nombre">${nom}</div>
+        <div class="vac-card-edad">${v.edad}</div>
+        <div class="vac-card-previene">${v.previene||''}</div>
+        ${v.esCustom?'<span class="vac-custom-tag">Personalizada</span>':''}
+      </div>${del}
+    </div>
+    <div class="vac-date-row" id="vdate-${v.id}" style="display:none">
+      <label class="vac-date-lbl">Fecha de aplicación:</label>
+      <div class="vac-date-controls">
+        <input type="date" class="vac-date-input" id="vinput-${v.id}" value="${new Date().toISOString().split('T')[0]}">
+        <button class="vac-date-confirm" onclick="confirmarFechaVac('${v.id}')">Confirmar ✓</button>
+        <button class="vac-date-cancel" onclick="cancelarFechaVac('${v.id}')">✕</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderVac() {
+  const cont = document.getElementById('vac-section');
+  if (!cont) return;
+  const pais = store.get(VAC_PAIS_KEY);
+  if (!pais) { renderVacSelector(cont); return; }
+
+  const lista  = pais === 'MX' ? VACUNAS_MX : VACUNAS_US;
+  const custom = loadVacCustom();
+  const estado = loadVacEstado();
+  const todas  = [...lista, ...custom.map(c => ({...c, esCustom:true}))];
+  const aplic  = todas.filter(v => estado[v.id] && estado[v.id].aplicada).length;
+  const pct    = todas.length ? aplic/todas.length*100 : 0;
+  const bandera    = pais === 'MX' ? '🇲🇽' : '🇺🇸';
+  const paisNombre = pais === 'MX' ? 'México' : 'Estados Unidos';
+  const fuente     = pais === 'MX'
+    ? 'Basado en la Cartilla Nacional de Vacunación (IMSS/SSA). Confirma el esquema con tu pediatra.'
+    : 'Basado en el calendario CDC. Algunas vacunas dependen de edad, producto y temporada. Consulta a tu pediatra.';
+
+  const groups = {};
+  todas.forEach(v => { if (!groups[v.edad]) groups[v.edad]=[]; groups[v.edad].push(v); });
+
+  cont.innerHTML = `
+    <div class="vac-aviso"><div class="vac-aviso-ico">ℹ️</div><div>Basado en el esquema oficial de vacunación. Las fechas exactas las indica tu pediatra. Ante dudas, consulta siempre a un profesional de salud.</div></div>
+    <div class="vac-country-bar"><span>${bandera} ${paisNombre}</span><button class="vac-change-pais" onclick="cambiarPaisVac()">Cambiar país</button></div>
+    <div class="pbar-wrap"><div class="pbar" id="vac-pbar" style="width:${pct}%"></div></div>
+    <div class="pbar-lbl" id="vac-lbl">${aplic} de ${todas.length} aplicadas</div>
+    <div class="source-note" style="margin-bottom:14px">${fuente}</div>
+    ${Object.entries(groups).map(([edad,vacs])=>`
+      <div class="vac-age">
+        <div class="vac-age-ttl">📅 ${edad}</div>
+        ${vacs.map(v=>renderVacCard(v, estado[v.id])).join('')}
+      </div>`).join('')}
+    <button class="vac-add-btn" onclick="abrirModalVacCustom()">+ Agregar vacuna</button>
+    <div id="vac-modal-custom" style="display:none" class="overlay" onclick="cerrarModalVacCustomSI(event)">
+      <div class="overlay-box vac-modal-box" onclick="event.stopPropagation()">
+        <div class="ov-title">Agregar vacuna</div>
+        <div class="ov-sub">Vacuna personalizada o adicional</div>
+        <input id="vac-c-nombre" class="ov-input" placeholder="Nombre de la vacuna *" type="text">
+        <input id="vac-c-edad" class="ov-input" placeholder="Edad de aplicación (ej: 18 meses)" type="text">
+        <input id="vac-c-previene" class="ov-input" placeholder="Enfermedad que previene (opcional)" type="text">
+        <label style="font-size:11px;color:var(--light);display:block;margin:-10px 0 4px 4px">Fecha de aplicación (opcional)</label>
+        <input id="vac-c-fecha" class="ov-input" type="date">
+        <textarea id="vac-c-notas" class="ov-input vac-notas-area" placeholder="Notas opcionales..."></textarea>
+        <button class="ov-btn" onclick="guardarVacCustom()">Guardar</button>
+        <button class="ov-skip" onclick="cerrarModalVacCustom()">Cancelar</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderVacSelector(cont) {
+  cont.innerHTML = `
+    <div class="vac-aviso"><div class="vac-aviso-ico">ℹ️</div><div>Basado en el esquema oficial de vacunación. Las fechas exactas las indica tu pediatra. Ante dudas, consulta siempre a un profesional de salud.</div></div>
+    <div class="vac-selector-pais">
+      <div class="vac-sel-ttl">¿En qué país vive tu bebé?</div>
+      <div class="vac-sel-sub">Selecciona para cargar el esquema oficial de vacunación.</div>
+      <div class="vac-sel-btns">
+        <button class="vac-country-btn" onclick="elegirPaisVac('MX')">
+          <span class="vac-cb-flag">🇲🇽</span>
+          <span class="vac-cb-name">México</span>
+          <span class="vac-cb-sub">Cartilla Nacional</span>
+        </button>
+        <button class="vac-country-btn" onclick="elegirPaisVac('US')">
+          <span class="vac-cb-flag">🇺🇸</span>
+          <span class="vac-cb-name">Estados Unidos</span>
+          <span class="vac-cb-sub">CDC Schedule</span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function elegirPaisVac(pais) { store.set(VAC_PAIS_KEY, pais); renderVac(); }
+function cambiarPaisVac()    { store.set(VAC_PAIS_KEY, '');   renderVac(); }
+
+function activarFechaVac(id) {
+  const r = document.getElementById('vdate-'+id); if (r) r.style.display='block';
+}
+function cancelarFechaVac(id) {
+  const r = document.getElementById('vdate-'+id); if (r) r.style.display='none';
+}
+function confirmarFechaVac(id) {
+  const inp  = document.getElementById('vinput-'+id);
+  const est  = loadVacEstado();
+  est[id] = { aplicada: true, fecha: inp ? inp.value || null : null };
+  saveVacEstado(est);
+  renderVac();
+}
+function editarFechaVac(id, e) {
+  if (e) e.stopPropagation();
+  const est = loadVacEstado();
+  delete est[id];
+  saveVacEstado(est);
+  renderVac();
+  setTimeout(() => activarFechaVac(id), 30);
+}
+
+function abrirModalVacCustom() {
+  const m = document.getElementById('vac-modal-custom');
+  if (!m) return;
+  ['vac-c-nombre','vac-c-edad','vac-c-previene','vac-c-fecha','vac-c-notas']
+    .forEach(i => { document.getElementById(i).value = ''; });
+  m.style.display = 'flex';
+}
+function cerrarModalVacCustom() {
+  const m = document.getElementById('vac-modal-custom'); if (m) m.style.display='none';
+}
+function cerrarModalVacCustomSI(e) {
+  if (e && e.target === document.getElementById('vac-modal-custom')) cerrarModalVacCustom();
+}
+function guardarVacCustom() {
+  const nombre = document.getElementById('vac-c-nombre').value.trim();
+  if (!nombre) { alert('El nombre de la vacuna es requerido.'); return; }
+  const edad    = document.getElementById('vac-c-edad').value.trim()    || 'Personalizada';
+  const previene= document.getElementById('vac-c-previene').value.trim();
+  const fecha   = document.getElementById('vac-c-fecha').value;
+  const notas   = document.getElementById('vac-c-notas').value.trim();
+  const id      = 'custom_'+Date.now();
+  const custom  = loadVacCustom();
+  custom.push({ id, nombre, edad, previene, notas, esCustom: true });
+  saveVacCustom(custom);
+  if (fecha) { const est=loadVacEstado(); est[id]={aplicada:true,fecha}; saveVacEstado(est); }
+  cerrarModalVacCustom();
+  renderVac();
+}
+function eliminarVacCustom(id, e) {
+  if (e) e.stopPropagation();
+  if (!confirm('¿Eliminar esta vacuna personalizada?')) return;
+  saveVacCustom(loadVacCustom().filter(c => c.id !== id));
+  const est = loadVacEstado(); delete est[id]; saveVacEstado(est);
+  renderVac();
 }
 
 // ═══════════════════════════════════════════════════
@@ -1464,6 +1701,7 @@ window.addEventListener('scroll', () => {
 // INIT
 // ═══════════════════════════════════════════════════
 applyName(getBabyName());
+migrarVacunas();
 renderChecklist();
 renderEj('all');
 
@@ -1474,13 +1712,22 @@ if(store.ok() && !store.get(NAME_KEY)) {
 </script>
 
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('SW registrado:', reg.scope))
-        .catch(err => console.error('SW falló:', err));
-    });
-  }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => {
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'activated' &&
+                navigator.serviceWorker.controller) {
+              window.location.reload();
+            }
+          });
+        });
+      });
+  });
+}
 </script>
 
 </body>
