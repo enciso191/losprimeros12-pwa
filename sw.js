@@ -1,5 +1,5 @@
 // Losprimeros12 — PandA · Service Worker v4
-const CACHE = 'primeros12-v5';
+const CACHE = 'primeros12-v6';
 const ASSETS = [
   './',
   './index.html',
