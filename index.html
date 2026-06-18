@@ -837,20 +837,29 @@ body{
         <div style="flex:1;height:1px;background:var(--sand)"></div>
       </div>
 
-      <!-- Registro manual (igual que antes) -->
-      <div style="display:flex;gap:8px;align-items:center">
-        <select id="s-hora" class="reg-input" style="flex:1">
-        </select>
-        <input id="s-dur" class="reg-input" type="number"
-               placeholder="Min" min="1" max="300"
-               style="width:80px">
+      <!-- Registro manual -->
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <input id="s-hora-ini" class="reg-input" type="time"
+               style="flex:1;min-width:100px">
+        <div style="display:flex;gap:4px;align-items:center">
+          <input id="s-dur-h" class="reg-input" type="number"
+                 placeholder="h" min="0" max="23"
+                 style="width:52px;text-align:center">
+          <span style="color:var(--light);font-size:12px;
+                       font-weight:700">h</span>
+          <input id="s-dur-m" class="reg-input" type="number"
+                 placeholder="min" min="0" max="59"
+                 style="width:60px;text-align:center">
+          <span style="color:var(--light);font-size:12px;
+                       font-weight:700">m</span>
+        </div>
         <button class="reg-btn" onclick="addSiesta()">
           + Agregar
         </button>
       </div>
       <div style="font-size:10px;color:var(--light);
                   margin-top:4px;text-align:right">
-        Registra hora de inicio y duración en minutos
+        Hora de inicio · duración manual
       </div>
 
     </div>
@@ -1445,7 +1454,21 @@ function renderReg() {
         // Texto de la fila: "14:30 → 16:23 · 1h 53m"
         // o si es manual: "14:30 · 45m"
         const rowTexto = `${s.hora}${horaFin} · ${durTexto}`;
-        return `<div class="reg-entry"><div class="reg-edet"><strong>${rowTexto}</strong></div><button class="reg-edel" onclick="delSiesta('${key}',${i})">✕</button></div>`;
+        return `
+          <div class="reg-entry">
+            <div class="reg-edet">
+              <strong>${rowTexto}</strong>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="reg-edel"
+                      style="background:none;border:1.5px solid var(--sand);
+                             border-radius:7px;color:var(--light);
+                             font-size:11px;padding:3px 8px;cursor:pointer"
+                      onclick="editSiesta('${key}',${i})">✎</button>
+              <button class="reg-edel"
+                      onclick="delSiesta('${key}',${i})">✕</button>
+            </div>
+          </div>`;
       }).join('')
     : '<div class="reg-empty">Sin siestas registradas</div>';
   // Bibis
@@ -1464,20 +1487,109 @@ function renderReg() {
 }
 
 function addSiesta() {
-  const hora=document.getElementById('s-hora').value||nowTime();
-  const dur=parseInt(document.getElementById('s-dur').value);
-  if(!dur||dur<1){alert('Ingresa la duración en minutos');return;}
-  const key=dk(dayOff), data=loadReg(key);
-  data.siestas.push({hora,dur});
-  data.siestas.sort((a,b)=>a.hora.localeCompare(b.hora));
-  saveReg(key,data);
-  document.getElementById('s-hora').value='';
-  document.getElementById('s-dur').value='';
+  const horaIni = document.getElementById('s-hora-ini').value
+                  || nowTime();
+  const horas   = parseInt(document.getElementById('s-dur-h').value) || 0;
+  const minutos = parseInt(document.getElementById('s-dur-m').value) || 0;
+  const dur     = horas * 60 + minutos;
+  if (dur < 1) {
+    alert('Ingresa la duración (horas y/o minutos)');
+    return;
+  }
+  const key  = dk(dayOff), data = loadReg(key);
+  data.siestas.push({ hora: horaIni, dur });
+  data.siestas.sort((a,b) => a.hora.localeCompare(b.hora));
+  saveReg(key, data);
+  document.getElementById('s-hora-ini').value = '';
+  document.getElementById('s-dur-h').value    = '';
+  document.getElementById('s-dur-m').value    = '';
   renderReg();
 }
 
 function delSiesta(key,i) {
   const d=loadReg(key); d.siestas.splice(i,1); saveReg(key,d); renderReg();
+}
+
+function editSiesta(key, i) {
+  const data  = loadReg(key);
+  const s     = data.siestas[i];
+  const horas = Math.floor((s.dur || 0) / 60);
+  const mins  = (s.dur || 0) % 60;
+
+  // Reutilizar el sistema de overlay existente
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.id = 'edit-siesta-ov';
+  ov.innerHTML = `
+    <div class="overlay-box">
+      <div class="ov-title">Editar siesta</div>
+      <div class="ov-sub">Corrige la hora de inicio, fin o duración</div>
+
+      <label style="display:block;font-size:12px;font-weight:700;
+                    color:var(--mid);margin:14px 0 5px">
+        Hora de inicio
+      </label>
+      <input id="es-hora-ini" type="time" class="ov-input"
+             value="${s.hora || ''}">
+
+      <label style="display:block;font-size:12px;font-weight:700;
+                    color:var(--mid);margin:10px 0 5px">
+        Hora de fin <span style="font-weight:400;color:var(--light)">(opcional)</span>
+      </label>
+      <input id="es-hora-fin" type="time" class="ov-input"
+             value="${s.horaFin || ''}">
+
+      <label style="display:block;font-size:12px;font-weight:700;
+                    color:var(--mid);margin:10px 0 5px">
+        Duración
+      </label>
+      <div style="display:flex;gap:8px;align-items:center;
+                  margin-bottom:16px">
+        <input id="es-dur-h" type="number" class="ov-input"
+               placeholder="h" min="0" max="23"
+               value="${horas || ''}"
+               style="width:70px;text-align:center">
+        <span style="color:var(--light);font-weight:700">h</span>
+        <input id="es-dur-m" type="number" class="ov-input"
+               placeholder="min" min="0" max="59"
+               value="${mins || ''}"
+               style="width:70px;text-align:center">
+        <span style="color:var(--light);font-weight:700">m</span>
+      </div>
+
+      <button class="ov-btn" onclick="guardarEditSiesta('${key}',${i})">
+        Guardar cambios
+      </button>
+      <button class="ov-skip"
+              onclick="document.getElementById('edit-siesta-ov')
+                       .remove()">
+        Cancelar
+      </button>
+    </div>`;
+  document.body.appendChild(ov);
+}
+
+function guardarEditSiesta(key, i) {
+  const horaIni = document.getElementById('es-hora-ini').value;
+  const horaFin = document.getElementById('es-hora-fin').value || null;
+  const horas   = parseInt(document.getElementById('es-dur-h').value) || 0;
+  const mins    = parseInt(document.getElementById('es-dur-m').value) || 0;
+  const dur     = horas * 60 + mins;
+
+  if (!horaIni) { alert('La hora de inicio es obligatoria'); return; }
+  if (dur < 1)  { alert('Ingresa una duración válida'); return; }
+
+  const data = loadReg(key);
+  data.siestas[i] = {
+    hora: horaIni,
+    horaFin: horaFin || undefined,
+    dur
+  };
+  data.siestas.sort((a,b) => a.hora.localeCompare(b.hora));
+  saveReg(key, data);
+
+  document.getElementById('edit-siesta-ov').remove();
+  renderReg();
 }
 
 // ── SIESTA EN CURSO ──────────────────────────────────────────
@@ -1566,6 +1678,18 @@ function iniciarTimerBanner() {
     const el = document.getElementById('siesta-banner-timer');
     if (el) el.textContent =
       `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+    // Alerta a las 4 horas exactas (14400 segundos)
+    // Solo una vez — después de la alerta no vuelve a disparar
+    if (diff === 14400) {
+      const confirmar = window.confirm(
+        '⚠️ La siesta lleva 4 horas.\n\n' +
+        '¿Deseas finalizarla ahora?\n\n' +
+        'Si el cronómetro quedó corriendo por error, ' +
+        'podrás editar la duración después.'
+      );
+      if (confirmar) finalizarSiesta();
+    }
   }, 1000);
 }
 
