@@ -186,6 +186,83 @@ body{
 .pa-calm h3{font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--dark);margin-bottom:7px}
 .pa-calm p{font-size:13px;color:var(--mid);line-height:1.6}
 .pa-card{background:var(--warm-white);border:1.5px solid var(--sand);border-radius:14px;margin-bottom:12px;overflow:hidden}
+/* ── EMERGENCIAS ── */
+.emerg-wrap{margin-top:6px;margin-bottom:16px}
+.emerg-pais-bar{display:flex;align-items:center;
+  justify-content:space-between;background:var(--sand);
+  border-radius:11px;padding:9px 13px;margin-bottom:10px;
+  font-size:13px;font-weight:700;color:var(--dark)}
+.emerg-change{background:none;border:none;
+  font-family:'Nunito',sans-serif;font-size:12px;
+  color:var(--deep-sky,#5C7A9A);font-weight:700;
+  cursor:pointer;text-decoration:underline;padding:0;
+  touch-action:manipulation}
+.emerg-selector{background:var(--warm-white);
+  border:1.5px solid var(--sand);border-radius:16px;
+  padding:24px 20px;text-align:center;margin:10px 0}
+.emerg-sel-ttl{font-family:'Playfair Display',Georgia,serif;
+  font-size:18px;color:var(--dark);margin-bottom:6px}
+.emerg-sel-sub{font-size:12px;color:var(--light);
+  margin-bottom:20px;line-height:1.5}
+.emerg-sel-btns{display:flex;gap:12px;
+  justify-content:center;flex-wrap:wrap}
+.emerg-country-btn{display:flex;flex-direction:column;
+  align-items:center;gap:5px;background:var(--cream);
+  border:2px solid var(--sand);border-radius:14px;
+  padding:16px 20px;cursor:pointer;
+  touch-action:manipulation;min-width:120px;
+  font-family:'Nunito',sans-serif}
+.emerg-country-btn:active{border-color:var(--terra);
+  background:rgba(212,132,90,.08)}
+.emerg-cb-flag{font-size:32px}
+.emerg-cb-name{font-size:14px;font-weight:800;color:var(--dark)}
+.emerg-grid{display:grid;gap:8px;margin-bottom:10px}
+.emerg-card{display:flex;align-items:center;gap:12px;
+  background:#FFF0F0;border:1.5px solid #F0BFBF;
+  border-radius:13px;padding:12px 14px;
+  text-decoration:none}
+.emerg-card:active{background:#FFE0E0}
+.emerg-card-ico{font-size:22px;flex-shrink:0}
+.emerg-card-info{flex:1;min-width:0}
+.emerg-card-name{font-size:13px;font-weight:800;
+  color:#8B2020;line-height:1.2}
+.emerg-card-num{font-size:18px;font-weight:800;
+  color:#D42020;letter-spacing:1px;margin-top:2px}
+.emerg-card-sub{font-size:10px;color:#8B6060;margin-top:2px}
+.emerg-card-call{font-size:18px;flex-shrink:0;color:#D42020}
+.emerg-divider{font-size:11px;font-weight:700;
+  color:var(--light);letter-spacing:.5px;
+  text-transform:uppercase;margin:14px 0 8px;
+  padding-left:4px}
+.contact-card{display:flex;align-items:center;gap:10px;
+  background:var(--warm-white);border:1.5px solid var(--sand);
+  border-radius:13px;padding:11px 13px;margin-bottom:8px}
+.contact-card-info{flex:1;min-width:0}
+.contact-card-name{font-size:13px;font-weight:800;
+  color:var(--dark);line-height:1.2}
+.contact-card-num{font-size:14px;font-weight:700;
+  color:var(--terra);margin-top:2px}
+.contact-card-nota{font-size:11px;color:var(--light);
+  margin-top:2px;line-height:1.3}
+.contact-card-btns{display:flex;gap:6px;flex-shrink:0}
+.contact-call-btn{background:var(--sage);color:white;
+  border:none;border-radius:9px;padding:8px 11px;
+  font-size:16px;cursor:pointer;touch-action:manipulation;
+  text-decoration:none;display:flex;align-items:center}
+.contact-edit-btn{background:var(--sand);color:var(--dark);
+  border:none;border-radius:9px;padding:8px 10px;
+  font-size:13px;font-weight:700;cursor:pointer;
+  touch-action:manipulation}
+.contact-del-btn{background:none;border:1.5px solid var(--sand);
+  color:var(--light);border-radius:9px;padding:8px 10px;
+  font-size:13px;cursor:pointer;touch-action:manipulation}
+.contact-del-btn:active{color:#D45A5A;border-color:#D45A5A}
+.emerg-add-btn{width:100%;background:none;
+  border:2px dashed var(--sand);border-radius:12px;
+  padding:12px;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;color:var(--light);
+  cursor:pointer;touch-action:manipulation;margin-top:4px}
+.emerg-add-btn:active{background:var(--sand);color:var(--dark)}
 .pa-hdr{padding:13px 15px;display:flex;align-items:center;gap:9px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(212,132,90,.2);user-select:none}
 .pa-hdr:active{background:var(--sand)}
 .pa-hdr-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
@@ -776,16 +853,17 @@ body{
   <div class="pa-calm">
     <span class="pa-e">🫶</span>
     <h3>Antes de leer esto, respira.</h3>
-    <p>Esta sección es solo informativa — para que nunca te tome por sorpresa algo que tiene solución. No reemplaza capacitación en primeros auxilios ni atención médica. <strong>Todo va a estar bien.</strong></p>
+    <p>Esta sección es solo informativa — para que nunca te
+    tome por sorpresa algo que tiene solución. No reemplaza
+    capacitación en primeros auxilios ni atención médica.
+    <strong>Todo va a estar bien.</strong></p>
   </div>
-  <div class="source-note" style="margin-bottom:14px">Para ingesta accidental o posible intoxicación en EE.UU., Poison Control atiende 24/7 al 1-800-222-1222. Si hay dificultad para respirar, convulsiones, inconsciencia o labios azules, llama primero al 911.</div>
+
+  <!-- Bloque de emergencias (país + contactos) -->
+  <div class="emerg-wrap" id="emerg-wrap"></div>
+
+  <!-- Tarjetas de primeros auxilios -->
   <div id="pa-list"></div>
-  <div style="background:#FFF0F0;border:1.5px solid #D45A5A;border-radius:13px;padding:14px;text-align:center;margin-top:8px">
-    <div style="font-size:22px;margin-bottom:5px">🚨</div>
-    <div style="font-weight:800;font-size:13px;color:#8B2020;margin-bottom:4px">Emergencias USA</div>
-    <div style="font-size:20px;font-weight:800;color:#D42020;letter-spacing:2px">911</div>
-    <div style="font-size:11px;color:#8B6060;margin-top:5px">Poison Control: 1-800-222-1222</div>
-  </div>
 </div>
 
 <!-- ═══ REGISTRO ═══ -->
@@ -945,7 +1023,7 @@ function goTab(id) {
   if (id==='check') renderChecklist();
   if (id==='ej')    renderEj('all');
   if (id==='vac')   renderVac();
-  if (id==='pa')    renderPA();
+  if (id==='pa')    { renderPA(); renderEmergencias(); }
   if (id==='reg')   { renderReg(); renderCrec(); }
 }
 
@@ -1359,23 +1437,23 @@ const PA = [
   {ic:'😤',bg:'rgba(168,200,216,.2)',title:'Atragantamiento',
     when:'Si el bebé hace ruidos raros al respirar, no llora ni tose fuerte, o su cara cambia de color.',
     steps:['Mantén la calma — el bebé siente tu energía. Respira.','Si puede toser o llorar: NO intervengas. La tos es el mejor mecanismo.','Si NO puede toser: colócalo boca abajo sobre tu antebrazo, cabeza más baja que el cuerpo.','Da 5 golpes firmes con la palma en el centro de su espalda (entre los omóplatos).','Si no se despeja: voltéalo boca arriba, 2 dedos en el centro del pecho, 5 compresiones.','Alterna 5 golpes en espalda + 5 compresiones hasta que se despeje o llegue ayuda.'],
-    emrg:'Si pierde el conocimiento o los labios se ponen azules: llama al 911 inmediatamente.'},
+    emrg:'Si pierde el conocimiento o los labios se ponen azules: llama al número de emergencias inmediatamente.'},
   {ic:'🌡️',bg:'rgba(212,132,90,.15)',title:'Fiebre',
     when:'Temperatura rectal superior a 38°C (100.4°F). En bebés menores de 3 meses, cualquier fiebre es urgencia.',
     steps:['Bebés bajo 3 meses con fiebre: llama al médico de inmediato.','Mayores de 3 meses: mide bien la temperatura (rectal es la más precisa).','Quita ropa extra, mantén ambiente fresco pero no frío.','Ofrece más líquidos — lactancia frecuente o agua si ya come sólidos.','Acetaminofén según el peso — consulta la dosis con tu pediatra antes.','Si sube de 39.5°C o dura más de 48h: consulta.'],
-    emrg:'Fiebre + convulsiones, rigidez de nuca, sarpullido con puntos rojos o dificultad para respirar: 911.'},
+    emrg:'Fiebre + convulsiones, rigidez de nuca, sarpullido con puntos rojos o dificultad para respirar: llama a emergencias.'},
   {ic:'😵',bg:'rgba(196,176,216,.2)',title:'Caída / Golpe en la cabeza',
     when:'Si el bebé cae desde su propia altura o más, especialmente sobre superficie dura.',
     steps:['Si llora inmediatamente: buena señal — está consciente.','Calma al bebé. No lo sacudas ni mueves bruscamente.','Un chichón es normal — es sangre bajo la piel, no en el cráneo.','Obsévalo 24 horas: ¿come normal, juega, pupilas iguales?','Paracetamol si hay dolor. Hielo envuelto en tela (no directo) en el chichón.','Si durmió justo después: despiértalo a las 2 horas para revisar que responde.'],
-    emrg:'Llama al 911 si: pierde el conocimiento, convulsiona, vomita más de 2 veces, una pupila es más grande que la otra, o llanto inconsolable 30+ min.'},
+    emrg:'Llama a emergencias si: pierde el conocimiento, convulsiona, vomita más de 2 veces, una pupila es más grande que la otra, o llanto inconsolable 30+ min.'},
   {ic:'🤧',bg:'rgba(139,175,140,.2)',title:'Nariz tapada',
     when:'Bebés menores de 6 meses solo respiran por la nariz — una congestión puede causarles problemas para comer.',
     steps:['Aplica 2 gotas de suero fisiológico en cada fosa nasal.','Espera 30 segundos. Usa aspirador nasal (Frida NoseFrida) suavemente.','No uses el aspirador más de 3 veces al día — irrita la mucosa.','Eleva la cabecera del colchón (toalla doblada bajo el colchón, no almohada).','Humidificador de vapor frío en el cuarto ayuda en climas secos.'],
     emrg:'Llama al médico si: más de 60 respiraciones/min, ruido al respirar, fosas nasales que se abren mucho con cada respiración.'},
   {ic:'💊',bg:'rgba(212,132,90,.15)',title:'Ingesta accidental',
     when:'Si el bebé se metió algo a la boca que no era comida — medicamento, planta, producto de limpieza.',
-    steps:['Mantén la calma. Identifica QUÉ se metió y CUÁNTO.','NO induzcas el vómito a menos que te lo indiquen.','Llama a Poison Control: 1-800-222-1222 (EUA).','Ten a la mano: nombre del producto, cantidad, hora, peso del bebé.','Sigue exactamente las instrucciones del operador.'],
-    emrg:'Si está inconsciente, convulsiona o no puede respirar: 911 primero, Poison Control después.'},
+    steps:['Mantén la calma. Identifica QUÉ se metió y CUÁNTO.','NO induzcas el vómito a menos que te lo indiquen.','Llama al centro de control de intoxicaciones de tu país.','Ten a la mano: nombre del producto, cantidad, hora, peso del bebé.','Sigue exactamente las instrucciones del operador.'],
+    emrg:'Si está inconsciente, convulsiona o no puede respirar: llama a emergencias primero, luego al centro de intoxicaciones de tu país.'},
 ];
 
 function renderPA() {
@@ -1389,7 +1467,7 @@ function renderPA() {
       <div class="pa-body" id="pa-b${i}">
         <div class="pa-when"><strong>⚡ Cuándo aplica</strong>${item.when}</div>
         ${item.steps.map((s,j)=>`<div class="pa-step"><span class="pa-num">${j+1}</span><span>${s}</span></div>`).join('')}
-        <div class="pa-emrg"><strong>🚨 Llama al 911 si...</strong>${item.emrg}</div>
+        <div class="pa-emrg"><strong>🚨 Llama a emergencias si...</strong>${item.emrg}</div>
       </div>
     </div>`).join('');
 }
@@ -1398,6 +1476,221 @@ function togglePA(i) {
   document.getElementById('pa-h'+i).classList.toggle('open');
   document.getElementById('pa-b'+i).classList.toggle('open');
 }
+
+// ── EMERGENCIAS Y CONTACTOS MÉDICOS ─────────────────────────
+const EMERG_PAIS_KEY    = 'panda_emerg_pais';
+const EMERG_CONTACT_KEY = 'panda_contactos_v1';
+
+const EMERG_MX = [
+  { ico:'🚨', nombre:'Emergencias', num:'911',
+    sub:'Policía · Bomberos · Ambulancia', tel:'911' },
+  { ico:'🏥', nombre:'Cruz Roja', num:'911',
+    sub:'Solicita ambulancia a través del 911', tel:'911' },
+  { ico:'🚒', nombre:'Bomberos', num:'911',
+    sub:'Incendios y rescates a través del 911', tel:'911' },
+  { ico:'👨‍⚕️', nombre:'IMSS Atención Telefónica', num:'800 623 2323',
+    sub:'Orientación y servicios del IMSS', tel:'8006232323' },
+  { ico:'💙', nombre:'Línea de la Vida', num:'800 911 2000',
+    sub:'Crisis y orientación emocional', tel:'8009112000' },
+];
+
+const EMERG_US = [
+  { ico:'🚨', nombre:'Emergencias', num:'911',
+    sub:'Police · Fire · Ambulance', tel:'911' },
+  { ico:'☠️', nombre:'Poison Control', num:'1-800-222-1222',
+    sub:'Intoxicaciones, 24/7', tel:'18002221222' },
+  { ico:'👶', nombre:'Kaiser Member Services', num:'1-800-464-4000',
+    sub:'Verifica atención y Nurse Advice según plan y región', tel:'18004644000' },
+];
+
+function loadContactos() {
+  try {
+    const raw = store.get(EMERG_CONTACT_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function saveContactos(arr) {
+  store.set(EMERG_CONTACT_KEY, JSON.stringify(arr));
+}
+
+function escapeEmerg(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  })[ch]);
+}
+
+function telEmerg(value) {
+  return String(value == null ? '' : value).replace(/[^\d+*#]/g, '');
+}
+
+function renderEmergencias() {
+  const wrap = document.getElementById('emerg-wrap');
+  if (!wrap) return;
+  const pais = store.get(EMERG_PAIS_KEY);
+
+  if (!pais) {
+    // Mostrar selector de país
+    wrap.innerHTML = `
+      <div class="emerg-selector">
+        <div class="emerg-sel-ttl">¿Dónde estás?</div>
+        <div class="emerg-sel-sub">
+          Los números de emergencia varían según el país.<br>
+          Puedes cambiarlo en cualquier momento.
+        </div>
+        <div class="emerg-sel-btns">
+          <button class="emerg-country-btn"
+                  onclick="elegirPaisEmerg('MX')">
+            <span class="emerg-cb-flag">🇲🇽</span>
+            <span class="emerg-cb-name">México</span>
+          </button>
+          <button class="emerg-country-btn"
+                  onclick="elegirPaisEmerg('US')">
+            <span class="emerg-cb-flag">🇺🇸</span>
+            <span class="emerg-cb-name">Estados Unidos</span>
+          </button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const lista = pais === 'MX' ? EMERG_MX : EMERG_US;
+  const bandera = pais === 'MX' ? '🇲🇽 México' : '🇺🇸 Estados Unidos';
+  const contactos = loadContactos();
+
+  const cardsHTML = lista.map(e => `
+    <a class="emerg-card" href="tel:${e.tel}">
+      <span class="emerg-card-ico">${e.ico}</span>
+      <div class="emerg-card-info">
+        <div class="emerg-card-name">${e.nombre}</div>
+        <div class="emerg-card-num">${e.num}</div>
+        <div class="emerg-card-sub">${e.sub}</div>
+      </div>
+      <span class="emerg-card-call">📞</span>
+    </a>`).join('');
+
+  const contactosHTML = contactos.length
+    ? contactos.map((c,i) => `
+        <div class="contact-card">
+          <div class="contact-card-info">
+            <div class="contact-card-name">${escapeEmerg(c.nombre)}</div>
+            <div class="contact-card-num">${escapeEmerg(c.tel)}</div>
+            ${c.nota
+              ? `<div class="contact-card-nota">${escapeEmerg(c.nota)}</div>`
+              : ''}
+          </div>
+          <div class="contact-card-btns">
+            <a class="contact-call-btn" href="tel:${telEmerg(c.tel)}">📞</a>
+            <button class="contact-edit-btn"
+                    onclick="editContacto(${i})">✏️</button>
+            <button class="contact-del-btn"
+                    onclick="delContacto(${i})">✕</button>
+          </div>
+        </div>`).join('')
+    : `<div style="font-size:13px;color:var(--light);
+                   font-style:italic;padding:8px 4px">
+         Sin contactos guardados
+       </div>`;
+
+  wrap.innerHTML = `
+    <div class="emerg-pais-bar">
+      <span>${bandera}</span>
+      <button class="emerg-change"
+              onclick="cambiarPaisEmerg()">Cambiar país</button>
+    </div>
+    <div class="emerg-grid">${cardsHTML}</div>
+    <div class="emerg-divider">Mis contactos médicos</div>
+    ${contactosHTML}
+    <button class="emerg-add-btn"
+            onclick="abrirModalContacto()">
+      ＋ Agregar contacto médico
+    </button>`;
+}
+
+function elegirPaisEmerg(pais) {
+  store.set(EMERG_PAIS_KEY, pais);
+  renderEmergencias();
+}
+
+function cambiarPaisEmerg() {
+  store.del(EMERG_PAIS_KEY);
+  renderEmergencias();
+}
+
+function abrirModalContacto(idx = null) {
+  const contactos = loadContactos();
+  const c = idx !== null ? contactos[idx] : null;
+
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.id = 'contacto-ov';
+  ov.onclick = e => {
+    if (e.target === ov) ov.remove();
+  };
+  ov.innerHTML = `
+    <div class="overlay-box" onclick="event.stopPropagation()">
+      <div class="ov-title">
+        ${c ? 'Editar contacto' : 'Agregar contacto médico'}
+      </div>
+      <div class="ov-sub">
+        Pediatra, médico familiar, enfermera, etc.
+      </div>
+      <input id="ct-nombre" class="ov-input" type="text"
+             placeholder="Nombre y especialidad *"
+             value="${c ? escapeEmerg(c.nombre) : ''}">
+      <input id="ct-tel" class="ov-input" type="tel"
+             placeholder="Teléfono *"
+             value="${c ? escapeEmerg(c.tel) : ''}">
+      <input id="ct-nota" class="ov-input" type="text"
+             placeholder="Notas (consultorio, horario...)"
+             value="${c ? escapeEmerg(c.nota || '') : ''}">
+      <button class="ov-btn"
+              onclick="guardarContacto(${idx})">
+        ${c ? 'Guardar cambios' : 'Agregar'}
+      </button>
+      <button class="ov-skip"
+              onclick="document.getElementById('contacto-ov')
+                       .remove()">
+        Cancelar
+      </button>
+    </div>`;
+  document.body.appendChild(ov);
+}
+
+function editContacto(i) {
+  abrirModalContacto(i);
+}
+
+function guardarContacto(idx) {
+  const nombre = document.getElementById('ct-nombre').value.trim();
+  const tel    = document.getElementById('ct-tel').value.trim();
+  const nota   = document.getElementById('ct-nota').value.trim();
+
+  if (!nombre) { alert('El nombre es obligatorio'); return; }
+  if (!tel)    { alert('El teléfono es obligatorio'); return; }
+
+  const contactos = loadContactos();
+  const entry = { nombre, tel, nota };
+
+  if (idx !== null && idx >= 0) {
+    contactos[idx] = entry;
+  } else {
+    contactos.push(entry);
+  }
+
+  saveContactos(contactos);
+  document.getElementById('contacto-ov').remove();
+  renderEmergencias();
+}
+
+function delContacto(i) {
+  if (!confirm('¿Eliminar este contacto?')) return;
+  const contactos = loadContactos();
+  contactos.splice(i, 1);
+  saveContactos(contactos);
+  renderEmergencias();
+}
+// ─────────────────────────────────────────────────────────────
 
 // ═══════════════════════════════════════════════════
 // REGISTRO DIARIO
